@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alamgir's Portfolio</title>
+    <description>This is a showcase portiofolio for Alamgir Mohammed.
+</description>
+    <link>https://alamgirm.github.io/</link>
+    <atom:link href="https://alamgirm.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 25 Dec 2017 13:53:26 -0500</pubDate>
+    <lastBuildDate>Mon, 25 Dec 2017 13:53:26 -0500</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 09 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/2017/10/09/project4/</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/09/project4/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 08 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/2017/10/08/project3/</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/08/project3/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 07 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/2017/10/07/project2/</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/07/project2/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 06 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/2017/10/06/project1/</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/06/project1/</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
