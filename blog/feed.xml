@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alamgir&#39;s Blog - Articles</title>
+    <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
+    <link>
+    https://alamgirm.github.io</link>
+    
+      
+      <item>
+        <title>Continuous Integration and Continuous Development on AWS : part III - Ansible</title>
+        
+          <description>&lt;ol&gt;
+  &lt;li&gt;loginto the Ansible Controller instance&lt;/li&gt;
+  &lt;li&gt;Update packages and install pip (that will install ansible)
+For RH epel needs to be installed first
+    &lt;pre&gt;
+&lt;/pre&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Sudo to root: $ sudo su&lt;/li&gt;
+      &lt;li&gt;Update the OS:# yum -y update&lt;/li&gt;
+      &lt;li&gt;Install wget: # yum -y install wget&lt;/li&gt;
+      &lt;li&gt;Download epel repo: # wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm&lt;/li&gt;
+      &lt;li&gt;Install epel repo: # yum -y install epel-release-latest-7.noarch.rpm&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;&amp;lt;/pre&amp;gt;
+  Now the pip installer&lt;/p&gt;
+    &lt;pre&gt;
+- Install pip: # yum -y install python-pip
+- Install ansible: # pip install ansible
+&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install git client
+    &lt;pre&gt;
+# yum -y install git
+&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Copy the private key file &lt;code class=&quot;highlighter-rouge&quot;&gt;HostForAnsibleKey.pem&lt;/code&gt; into the home directory.
+The controller node need this key to access the host.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Manually create an inventory of all the resources. Store it as &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/ansible/hosts&lt;/code&gt;
+    &lt;pre&gt;
+[test-servers]
+ 10.179.44.7
+&lt;/pre&gt;
+    &lt;p&gt;[ Alternatively I could use the ec2.py script to list]&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Configure ansible. Create a file named &lt;code class=&quot;highlighter-rouge&quot;&gt;ansible.cfg&lt;/code&gt; inside folder &lt;code class=&quot;highlighter-rouge&quot;&gt;ansible&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;
+[defaults]
+inventory     = /etc/ansible/hosts
+remote_user   = ec2-user
+become        = True
+become_method = sudo
+become_user   = root
+nocows        = 1
+&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Check and see if ansible can access the host.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;
+ansible -m ping &#39;test-servers&#39; --private-key ../HostForAnsibleKey.pem
+&lt;/pre&gt;
+
+&lt;p&gt;If it works fine, the result should be:&lt;/p&gt;
+&lt;pre&gt;
+10.179.44.7 | SUCCESS =&amp;gt; {
+    &quot;changed&quot;: false, 
+    &quot;ping&quot;: &quot;pong&quot;
+}
+&lt;/pre&gt;
+
+</description>
+        
+        <pubDate>Sat, 16 Dec 2017 15:18:00 -0500</pubDate>
+        <link>
+        https://alamgirm.github.io/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Continuous Integration and Continuous Deployment on AWS : part II - CloudFormation</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/assets/images/2017/17_12_16/cicd-0.png&quot; alt=&quot;CICD&quot; class=&quot;leftimg&quot; /&gt;
+In the &lt;a href=&quot;Continuous-Integration-and-Continuous-Development-using-AWS-part-I.html&quot;&gt; last post&lt;/a&gt; we created a limited-rights IAM user that we’ll use in this post and in future posts to create different infrastructure resources on AWS Cloud. We can defintely use the account to login into AWS Management Console, and create and manage resources, but that would be too tedious for not-too-small project, and more importatnly against the philosohpy of DevOps. In DevOps philosophy we’d like to automate everything, including creating infrastrure using code. In this post, we’ll see how we can create few EC2 intances, create SSH key pairs, and Security Group to controll access to the EC2 instances- all using code. We’ll login into the AWS Management Console to verify that everything is created as expected.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 16 Dec 2017 15:18:00 -0500</pubDate>
+        <link>
+        https://alamgirm.github.io/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-II</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-II</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Continuous Integration and Continuous Deployment on AWS : part I - setup IAM</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/assets/images/2017/17_12_16/cicd-0.png&quot; alt=&quot;CICD&quot; class=&quot;leftimg&quot; /&gt;
+DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 16 Dec 2017 15:18:00 -0500</pubDate>
+        <link>
+        https://alamgirm.github.io/Continuous-Integration-and-Continuous-Development-using-AWS-part-I</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Continuous-Integration-and-Continuous-Development-using-AWS-part-I</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Continuous Integration and Continuous Development on AWS : part I - setup IAM</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/assets/images/2017/17_12_16/cicd-0.png&quot; alt=&quot;CICD&quot; class=&quot;leftimg&quot; /&gt;
+DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 16 Dec 2017 15:18:00 -0500</pubDate>
+        <link>
+        https://alamgirm.github.io/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-I</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-I</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Barebone AVR Programming - LED Blinker</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/assets/images/2017/2017_08_09_AVR_board.png&quot; alt=&quot;AVR Board&quot; class=&quot;leftimg&quot; /&gt;
+Arduino is fun and easy, and it gives the best introducton to AVR processors. However, if you want to build something useful, you’ll soon hit the wall. Arduinio has a huge collection of shields, and supporting libraries for them, but developing a well-designed system is difficult when it comes to debugging. This is due to the fact that Arduino IDE hides most of the intricacies of AVR MCU. If you are used to debug program using breakpoints, stepping and tracing through lines of code, the Arduino IDE is no help. The AVR Studio development environment from Atmel is the saviour here. However, it can’t connect to an Arduino board through the USB port. Fortunately, most Arduino boards have a special header called ICE (in-circuit-emulator), which is actually an SPI (serial peripheral interface) connector. A special hardware tool, for example AVR ISP MK II is needed to connect. There are other alternatives too.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 09 Aug 2017 16:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/Barebone-AVR-Programming-LED-Blinker</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Barebone-AVR-Programming-LED-Blinker</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Serial Communications- How to</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/assets/images/2017/2017_07_08_RS232.png&quot; alt=&quot;RS232&quot; class=&quot;leftimg&quot; /&gt; Digital systems need to communicate, even devices within a single system need to communicate with each other. In hardware, this means exachanges of digital signals between two parties. Since data are represented as binary numbers in a digital system, transferring of a binary number can happen in two manners: all the bits in one go (in parallel) or one bit at a time (in serial). This gives rise to design of two types of communication system: parallel and serial. The first thing to note is parallel communication needs more wires but supposedly transfer data in relatively faster manner. In contrast, serial communication can work with fewer wires, but would take longer to transfer the same amount of data. From this, it might look that parallel communication is ‘better’ than serial one, but in reality this is hardly the case.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 08 Jul 2017 09:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/serial-communication-how-to</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/serial-communication-how-to</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Basics of block storage devices</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/assets/images/2017/2017_06_hard_disk.png&quot; alt=&quot;Hard disk&quot; class=&quot;leftimg&quot; /&gt; Today’s mass storage devices include magnetic hard disk, solid state drive, and often flash drive. Though technologically quite different, all these storage classes have one thing in common: they are accessed in a bigger chunk of data unit, not by a byte. This unit of access is called block (sometimes also called page). The internal technology, organizational structure etc could be whatever but the storage device’s adapter IDE/SATA/PATA/SCSI exposes the storage in a uniform manner to the operating system.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 23 Jun 2017 02:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/basics-of-block-storage-device</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/basics-of-block-storage-device</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Inside ATMega AVR microcontroller</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/assets/images/2017/17_06_14_ATmega328P.jpg&quot; alt=&quot;Atmel ATmega328P&quot; class=&quot;rightimg&quot; /&gt;Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 14 Jun 2017 08:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/Inside-ATmega-AVR</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Inside-ATmega-AVR</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Modern microcontroller: AVR series</title>
+        
+          <description>&lt;p&gt;The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. &lt;img src=&quot;/assets/images/2017/17_06_13_Atmel_AVR_logo.png&quot; alt=&quot;AVR logo&quot; class=&quot;rightimg&quot; /&gt; Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 13 Jun 2017 02:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/modern-microcontroller-avr-group</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/modern-microcontroller-avr-group</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Earliest Microprocessor: Zilog Z80</title>
+        
+          <description>&lt;p&gt;The CPU design team at Intel in the 70’s was led by &lt;a href=&quot;https://en.wikipedia.org/wiki/Federico_Faggin&quot;&gt;Federico Faggin&lt;/a&gt;. After resigning from Intel Federico formed the start-up company Zilog, for design, development and marketing of microprocessor. &lt;img src=&quot;/assets/images/2017/17_06_12_Zilog_Z80.jpg&quot; alt=&quot;Zilog Z80&quot; class=&quot;rightimg&quot; /&gt; Zilog Z80 was their first product to hit the market, aimed for embedded applications. Its direct competitor was Intel 8080, and in fact Zilog always highligheted in commercials about its superiority over 8080. Compared to Intel 8080 which required +12V, -5V and +5V, Z80 needed only one +5V supply, had simple clock, and supported more registers, instructions, addressing modes, and even non-maskable interrupts.   Z80 was a gigantic success that helped the company grew from just elevel to a thousand employees in just two years. Many other semiconductor companies around the world copied the design of Z80 and sold their chips. Famaous Atari computuers, the first one to have color display were built on Zilog Z80.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 12 Jun 2017 02:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/earlier-microprocessor-Zilog-Z80</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/earlier-microprocessor-Zilog-Z80</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Earliest Microprocessor: Intel 8080</title>
+        
+          <description>&lt;p&gt;The history of what we know as microprocessor (MPU) began with Intel Corporation’s 4004 chip, which they built to replace hardwired logic in simple applications. It was a 4-bit processor with very little programming capability which they improved in later 4040 processor. &lt;img src=&quot;/assets/images/2017/17_06_08_Intel_8080.png&quot; alt=&quot;Intel 8080&quot; class=&quot;leftimg&quot; /&gt; Intel followed the development with 8008, and then 8080 both 8-bit processors with better programming support. In fact 8080 was used in a wide range of applications, including the design of few personal computers (PC), and industrial robots. It is the first processor that revolutionized the industry and dictated the future of microprocessors.  Intel 8080 still required extra chips, such as memory, bus controller, clock generator etc to work as a system. This was later improved upon in 8085 that was what we now call system on a chip (SoC)- a chip with built-in everything that requires very little extra to work as a system.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 07 Jun 2017 21:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/earlier-microprocessor-intel-8080</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/earlier-microprocessor-intel-8080</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Understanding Program Flow and Interrupts</title>
+        
+          <description>&lt;p&gt;Once we understand how a microprocessor works, and how programs are written and get executed by a microprocessor, it is time to dig deeper and learn in detail on how the control in a program flows between instruction to instruction. This posts talks about the flow or path of execution in a program, and how and when the microprocessor could break that flow. In particular, we’ll learn about interrupts- a very useful mechanism to allow priority and importance in program execution.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 05 Jun 2017 13:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/understanding-program-flow-and-interrupts</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/understanding-program-flow-and-interrupts</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Microprocessor, microcontroller and programming</title>
+        
+          <description>&lt;p&gt;A microprocessor, or microprossor unit (MPU) often also known as central processing unit (CPU) is generally a physical semiconductor chip with lots of pins to connect to other chips. But what makes it special is the capability that it can execute certain instructions. Here execution means, when some electrical signals are presented at the inputs of the MPU, is produces some appropriate signals at its output pins. Almost always, a MPU is connected to a memory chip (via two groups of wires known as data bus and address bus plus some more control wires) where the instructions (combinedly known as program) are stored. A MPU will always have a clock that coordinates the transfer of signals between MPU and different chips. Other than memory, some form of input and output devices are also usually connected to an MPU. These are commonly connect to the MPU via some controller chip. Here is an example of all the things mentioned above.
+&lt;img src=&quot;/assets/images/2017/17_06_05_image_1.png&quot; alt=&quot;BareBone MPU&quot; title=&quot;MPU, Memory, Keypad and LCD display.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Before anyone could write any program these components need to be properly connected with wires and supplied power. Once powerd programs can be written into the memory and exucuted. However, both programs and data will get lost when the power is removed since the memory shown is a volatile type one.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 04 Jun 2017 20:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/microprocessor-micro-controller-and-programming</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/microprocessor-micro-controller-and-programming</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Designing a simple Assembler</title>
+        
+          <description>&lt;p&gt;Following on the design of a simple microprocessor in the &lt;a href=&quot;/design-a-simple-microprocessor.html &quot;&gt;last post&lt;/a&gt;, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 04 Jun 2017 07:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/design-a-simple-assembler</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/design-a-simple-assembler</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Designing a simple microprocessor</title>
+        
+          <description>&lt;p&gt;A microprocessor is physicaly a semiconductor chip with lots of pins to connect to other chips but what makes it special is that it can execute certain instructions. Here execution means that when certain electrical signals are presented at the inputs of the microprocessor, is produces some appropriate signals at its output pins. How does a microprocessor do that, or how can we design our own microprocessor to understand the inner working?  &lt;img src=&quot;/assets/images/2017/17_06_03_intel8086.png&quot; alt=&quot;Intel 8086 MPU chip. Z80&quot; class=&quot;rightimg&quot; /&gt;This posts discusses how to do just that. While doing so, we will also design an instruction set for the microprocessor, and demonstrate how programs are written, and then made to get executed by the processor.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 03 Jun 2017 19:18:00 -0400</pubDate>
+        <link>
+        https://alamgirm.github.io/design-a-simple-microprocessor</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/design-a-simple-microprocessor</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>https://alamgirm.github.io/blog/</title>
+   
+   <link>https://alamgirm.github.io</link>
+   <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
+   <language>en_GB</language>
+   <managingEditor> alamgir</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Continuous Integration and Continuous Development on AWS : part III - Ansible</title>
+	  <link>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-12-16T15:18:00-05:00</pubDate>
+	  <guid>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</guid>
+	  <description><![CDATA[
+	     <ol>
+  <li>loginto the Ansible Controller instance</li>
+  <li>Update packages and install pip (that will install ansible)
+For RH epel needs to be installed first
+    <pre>
+</pre>
+    <ul>
+      <li>Sudo to root: $ sudo su</li>
+      <li>Update the OS:# yum -y update</li>
+      <li>Install wget: # yum -y install wget</li>
+      <li>Download epel repo: # wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</li>
+      <li>Install epel repo: # yum -y install epel-release-latest-7.noarch.rpm</li>
+    </ul>
+    <p>&lt;/pre&gt;
+  Now the pip installer</p>
+    <pre>
+- Install pip: # yum -y install python-pip
+- Install ansible: # pip install ansible
+</pre>
+  </li>
+  <li>Install git client
+    <pre>
+# yum -y install git
+</pre>
+  </li>
+  <li>
+    <p>Copy the private key file <code class="highlighter-rouge">HostForAnsibleKey.pem</code> into the home directory.
+The controller node need this key to access the host.</p>
+  </li>
+  <li>Manually create an inventory of all the resources. Store it as <code class="highlighter-rouge">/etc/ansible/hosts</code>
+    <pre>
+[test-servers]
+ 10.179.44.7
+</pre>
+    <p>[ Alternatively I could use the ec2.py script to list]</p>
+  </li>
+  <li>Configure ansible. Create a file named <code class="highlighter-rouge">ansible.cfg</code> inside folder <code class="highlighter-rouge">ansible</code>.</li>
+</ol>
+<pre>
+[defaults]
+inventory     = /etc/ansible/hosts
+remote_user   = ec2-user
+become        = True
+become_method = sudo
+become_user   = root
+nocows        = 1
+</pre>
+
+<ol>
+  <li>Check and see if ansible can access the host.</li>
+</ol>
+<pre>
+ansible -m ping 'test-servers' --private-key ../HostForAnsibleKey.pem
+</pre>
+
+<p>If it works fine, the result should be:</p>
+<pre>
+10.179.44.7 | SUCCESS =&gt; {
+    "changed": false, 
+    "ping": "pong"
+}
+</pre>
+
+<!--more-->
+
+<h3 id="creating-an-ansible-playbook">Creating an ansible playbook</h3>
+
+<h3 id="creating-helloworld-app">Creating HelloWorld app</h3>
+<ol>
+  <li>inside ansible folder, create a new folder named roles.</li>
+  <li><code class="highlighter-rouge">ansible-galaxy init nodejs</code> creates a new role nodejs
+ We’ll use this role to install nodejs on to the target system</li>
+  <li>Go inside nodejs, then tasks and edit file main.yml</li>
+</ol>
+<pre>
+---
+# tasks file for nodejs
+
+- name: Installing nodejs and npm
+  yum:
+    name: ""
+    enablerepo: epel
+    state: installed
+  with_items:
+    - nodejs
+    - npm
+</pre>
+<p>Whenever ansible runs, it will check the existence of these package, if not found will install.</p>
+
+<ol>
+  <li>Another role is needed to install and run the app. Go back to roles folder, and issue
+<code class="highlighter-rouge">ansible-galaxy init helloworld</code>. After the role creattion go inside, helloworld and then files.</li>
+  <li>This folders contains files that ansible can upload to the target. Lets get 2 files from web (ideally we’d get them from github)</li>
+</ol>
+<pre>
+wget http://bit.ly/2vESNuc -O files/helloworld.js
+</pre>
+<ol>
+  <li>Now go inside the task folder (under helloworld) and edit main.yml file</li>
+</ol>
+<pre>
+- name: Copying the application files
+  copy:
+    src: helloworld.js
+    dest: /home/ec2-user/
+    owner: ec2-user
+    group: ec2-user
+    mode: 0644
+  notify: restart helloworld
+
+- name: Copying the upstart file
+  copy:
+     src: helloworld.conf
+     dest: /etc/init/helloworld.conf
+     owner: root
+     group: root
+     mode: 0644
+
+- name: Starting the HelloWorld nodejs service
+  service:
+      name: helloworld
+      state: started
+</pre>
+
+<p>Now need to add a handler. Head to folder handlers under helloworld. Edit main.yml</p>
+<pre>
+- name: restart helloworld
+  service:
+      name: helloworld
+      state: restarted
+</pre>
+
+<p>Module dependency. The app needs node4j to run. Open meta/main.yml
+At the bottom, remove [] and make it appear</p>
+<pre>
+dependencies:
+   - pre_req
+   - nodejs
+</pre>
+
+<h3 id="main-playbook-file">Main Playbook file</h3>
+<p>Here is the main playbook file</p>
+<pre>
+---
+- hosts: test_servers
+  become: yes
+  roles:
+     - helloworld
+</pre>
+
+<p>Now play the playbook file:
+<code class="highlighter-rouge">ansible-playbook helloworld.yml --private-key ../HostForAnsibleKey.pem</code></p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
