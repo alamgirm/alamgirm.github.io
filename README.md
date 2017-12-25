@@ -1,5 +1,3 @@
-# urban-theme
+# Alamgir's portfolio
 
-This theme is a Jekyll port of http://erosie.net/ with some modifications. It is designed for visual artists.
-
-Live-Demo: http://narkotyk.net/
+This portfolio uses a Jekyll port of http://erosie.net/ theme. Theme is courtesy of http://narkotyk.net/
