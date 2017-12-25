@@ -19,7 +19,7 @@
 	  <guid>/blog//microprocessor-micro-controller-and-programming</guid>
 	  <description><![CDATA[
 	     <p>A microprocessor, or microprossor unit (MPU) often also known as central processing unit (CPU) is generally a physical semiconductor chip with lots of pins to connect to other chips. But what makes it special is the capability that it can execute certain instructions. Here execution means, when some electrical signals are presented at the inputs of the MPU, is produces some appropriate signals at its output pins. Almost always, a MPU is connected to a memory chip (via two groups of wires known as data bus and address bus plus some more control wires) where the instructions (combinedly known as program) are stored. A MPU will always have a clock that coordinates the transfer of signals between MPU and different chips. Other than memory, some form of input and output devices are also usually connected to an MPU. These are commonly connect to the MPU via some controller chip. Here is an example of all the things mentioned above.
-<img src="assets/images/2017/17_06_05_image_1.png" alt="BareBone MPU" title="MPU, Memory, Keypad and LCD display." /></p>
+<img src="/blog/assets/images/2017/17_06_05_image_1.png" alt="BareBone MPU" title="MPU, Memory, Keypad and LCD display." /></p>
 
 <p>Before anyone could write any program these components need to be properly connected with wires and supplied power. Once powerd programs can be written into the memory and exucuted. However, both programs and data will get lost when the power is removed since the memory shown is a volatile type one.
 <!--more--></p>

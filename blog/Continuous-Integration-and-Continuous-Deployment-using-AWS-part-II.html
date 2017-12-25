@@ -139,8 +139,8 @@
 
         <section class="post-content">
             
-            <p><img src="assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
-In the <a href="Continuous-Integration-and-Continuous-Development-using-AWS-part-I.html"> last post</a> we created a limited-rights IAM user that we’ll use in this post and in future posts to create different infrastructure resources on AWS Cloud. We can defintely use the account to login into AWS Management Console, and create and manage resources, but that would be too tedious for not-too-small project, and more importatnly against the philosohpy of DevOps. In DevOps philosophy we’d like to automate everything, including creating infrastrure using code. In this post, we’ll see how we can create few EC2 intances, create SSH key pairs, and Security Group to controll access to the EC2 instances- all using code. We’ll login into the AWS Management Console to verify that everything is created as expected.</p>
+            <p><img src="/blog/assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+In the <a href="/blog/Continuous-Integration-and-Continuous-Development-using-AWS-part-I.html"> last post</a> we created a limited-rights IAM user that we’ll use in this post and in future posts to create different infrastructure resources on AWS Cloud. We can defintely use the account to login into AWS Management Console, and create and manage resources, but that would be too tedious for not-too-small project, and more importatnly against the philosohpy of DevOps. In DevOps philosophy we’d like to automate everything, including creating infrastrure using code. In this post, we’ll see how we can create few EC2 intances, create SSH key pairs, and Security Group to controll access to the EC2 instances- all using code. We’ll login into the AWS Management Console to verify that everything is created as expected.</p>
 
 <!--more-->
 
@@ -259,7 +259,7 @@ print(t.to_json())
 <p>Once we have the template file, we log into the Maganagement Console, and select <code class="highlighter-rouge">CloudFormation</code> service. Click on <code class="highlighter-rouge">Create Stack</code>, then choose <code class="highlighter-rouge">Upload a template to Amazon S3</code> and select our template file. Clicking Next and then giving the stack a name takes to Options page. One more click on next button brings a summary of the template. Hitting the Create button starts craeting the EC2 instances, and the security group related to them.</p>
 
 <p>To verify, we go to the EC2 dashboard and click on Instances:
- <img src="assets/images/2017/17_12_17/ec2-instances.png" alt="EC2 instances" class="leftimg" /></p>
+ <img src="/blog/assets/images/2017/17_12_17/ec2-instances.png" alt="EC2 instances" class="leftimg" /></p>
 
 <p>We can also verify the security groups if wished.</p>
 
@@ -358,9 +358,9 @@ print(t.to_json())
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/blog/assets/images/cover/cover7.jpg)" href="/blog/Continuous-Integration-and-Continuous-Development-using-AWS-part-I">
+        <a class="read-next-story prev " style="background-image: url(/blog/assets/images/cover/cover7.jpg)" href="/blog/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-I">
             <section class="post">
-                <h2>Continuous Integration and Continuous Deployment on AWS : part I - setup IAM</h2>
+                <h2>Continuous Integration and Continuous Deploypment on AWS : part I - setup IAM</h2>
                 <p>DevOps philosophy has it that an application is better developed, tested and deployed in small...</p>
             </section>
         </a>

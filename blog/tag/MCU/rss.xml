@@ -18,7 +18,7 @@
 	  <pubDate>2017-06-14T08:18:00-04:00</pubDate>
 	  <guid>/blog//Inside-ATmega-AVR</guid>
 	  <description><![CDATA[
-	     <p><img src="assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
+	     <p><img src="/blog/assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
 
 <!--more-->
 
@@ -36,7 +36,7 @@
   <li>CPU core (ALU, Program counter, general purpose registers etc)</li>
 </ul>
 
-<p><img src="assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+<p><img src="/blog/assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
 
 <p>AVR is based on modidfied Harvard architecture, so it is expected the program and data memory space tos be seperate. In addition to that, AVR allows readonly access to any data residing in the program memory, but no writes are allowed by the program itself. In addition to the memories for data and programs, AVR also has few bits of EEPROM for storing CPU configuration parameters (we’ll see later). When compared to a CPU like Intel 8080 or Zilog Z80, the ATmega has lots of other functionalities buil-it, to be justly called a microcontroller. Lets talk them in detail:</p>
 
@@ -57,7 +57,7 @@
 
 <h4 id="timerscounters">Timers/Counters</h4>
 <p>ATmega has on chip timers/counters, and thre are two kinds. The first kind is a 8-bit synchronous where the clock signal is derived from the CPU clock. The second kinds allows connecting an external clock circtuit to trigger the timer/counter and works independent of the CPU clock. Each of the timer/counter available can operate in a multiple of modes depending on application needs.
-<img src="/assets/images/2017/17_06_14_Atmel_ATmega_arch2.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+<img src="/blog/assets/images/2017/17_06_14_Atmel_ATmega_arch2.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
 
 <h5 id="other-features">Other Features</h5>
 
@@ -84,7 +84,7 @@
 	  <pubDate>2017-06-13T02:18:00-04:00</pubDate>
 	  <guid>/blog//modern-microcontroller-avr-group</guid>
 	  <description><![CDATA[
-	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
+	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="/blog/assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
 
 <!--more-->
 
@@ -363,7 +363,7 @@
 <p>Use of subroutine/function is no different to the MPU, it executes the statements in the same manner, as it does the main program. The only benefit is to the programmer, who can better organize the program when writing.</p>
 
 <h2 id="interrupts">Interrupts</h2>
-<p>The simple microprocessor we <a href="design-a-simple-microprocessor.html ">designed</a> does not support any kind of priority or urgency. For instance, if the microprocessor is busy running a long loop, there is no means for the programmer to stop or cancel the loop without resetting or powering off the MPU. We ccould add a register named NR (iNterrup Register) in the design, and a hardware pin named IntReq (Interrupt Request). The idea is to put an address (of the starting statemnt of a group of instruction or subroutine)  in NR, and make the MPU jump that address whenever the pin IntReq becomes active. Once that subroutne is done, the MPU will come back where it left off before the IntReq pin became active. Making the IntReq pin active is known as interrupt request, and the subroutine that executes in response to this request is called <em>interrup service routine</em> (ISR).</p>
+<p>The simple microprocessor we <a href="/blog/design-a-simple-microprocessor.html ">designed</a> does not support any kind of priority or urgency. For instance, if the microprocessor is busy running a long loop, there is no means for the programmer to stop or cancel the loop without resetting or powering off the MPU. We ccould add a register named NR (iNterrup Register) in the design, and a hardware pin named IntReq (Interrupt Request). The idea is to put an address (of the starting statemnt of a group of instruction or subroutine)  in NR, and make the MPU jump that address whenever the pin IntReq becomes active. Once that subroutne is done, the MPU will come back where it left off before the IntReq pin became active. Making the IntReq pin active is known as interrupt request, and the subroutine that executes in response to this request is called <em>interrup service routine</em> (ISR).</p>
 
 <p>Interrupts are very common in commercial MPU, and in fact most MPU support more than one interrupt. It is also common to extend the interrupt request feature so that more than one request could be handled. For instance, our MPU could set aside 8-bit x 16 memory, where 16 different memory addresses would be stored. Before making an interrupt request, a device first put its identifier (say betweet 0 and F) into a pre-designated register or memory address, and then make IntReq active. The interrupt service will first see the id of requesting device and then based on it, choose the corresponding entry of the 8-bit x 16 memory table. No wonder, such table is known as <em>interrupt vector table</em> since each entry of the table is an address (vector) of the subroutine corresponding to an interrup request.</p>
 
@@ -380,7 +380,7 @@
 	  <guid>/blog//microprocessor-micro-controller-and-programming</guid>
 	  <description><![CDATA[
 	     <p>A microprocessor, or microprossor unit (MPU) often also known as central processing unit (CPU) is generally a physical semiconductor chip with lots of pins to connect to other chips. But what makes it special is the capability that it can execute certain instructions. Here execution means, when some electrical signals are presented at the inputs of the MPU, is produces some appropriate signals at its output pins. Almost always, a MPU is connected to a memory chip (via two groups of wires known as data bus and address bus plus some more control wires) where the instructions (combinedly known as program) are stored. A MPU will always have a clock that coordinates the transfer of signals between MPU and different chips. Other than memory, some form of input and output devices are also usually connected to an MPU. These are commonly connect to the MPU via some controller chip. Here is an example of all the things mentioned above.
-<img src="assets/images/2017/17_06_05_image_1.png" alt="BareBone MPU" title="MPU, Memory, Keypad and LCD display." /></p>
+<img src="/blog/assets/images/2017/17_06_05_image_1.png" alt="BareBone MPU" title="MPU, Memory, Keypad and LCD display." /></p>
 
 <p>Before anyone could write any program these components need to be properly connected with wires and supplied power. Once powerd programs can be written into the memory and exucuted. However, both programs and data will get lost when the power is removed since the memory shown is a volatile type one.
 <!--more--></p>
@@ -418,7 +418,7 @@
 	  <pubDate>2017-06-04T07:18:00-04:00</pubDate>
 	  <guid>/blog//design-a-simple-assembler</guid>
 	  <description><![CDATA[
-	     <p>Following on the design of a simple microprocessor in the <a href="design-a-simple-microprocessor.html ">last post</a>, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.</p>
+	     <p>Following on the design of a simple microprocessor in the <a href="/blog/design-a-simple-microprocessor.html ">last post</a>, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.</p>
 
 <!--more-->
 
@@ -429,7 +429,7 @@
 <pre>NOP, STOP, DUMP, LOAD, STOR, XCHG, JMP, JMPE, ADD, 
 SUB, INC, DEC, AND, OR, NOT, XOR, CMP, COMP</pre>
 
-<p>And if you look at the opcodes for these instructions <a href="design-a-simple-microprocessor.html#opcode_mnemonic">mnemonics</a>, the corresponding machine codes should be (in hexadecimal): <br /></p>
+<p>And if you look at the opcodes for these instructions <a href="/blog/design-a-simple-microprocessor.html#opcode_mnemonic">mnemonics</a>, the corresponding machine codes should be (in hexadecimal): <br /></p>
 
 <pre>
 0, 1, 2, 3, 4, 5, 6, 7, 8, 
@@ -441,7 +441,7 @@ SUB, INC, DEC, AND, OR, NOT, XOR, CMP, COMP</pre>
 
 <p>A finite automata (also called state machine) is a perfect tool for modeling the parsing process. Given the 18 keywords that we need to detect, the following is an automata that could do that:</p>
 
-<p><img src="/assets/images/2017/17_06_04_keyword_automata.png" alt="Finite Automata" title="Finite automata for parsing keywords." /></p>
+<p><img src="/blog/assets/images/2017/17_06_04_keyword_automata.png" alt="Finite Automata" title="Finite automata for parsing keywords." /></p>
 
 <p>How it works is quite easy to understand. Say we have one line of text from a program written in assesbly language. We begin at the round rectangle block <code class="highlighter-rouge">Begin</code> and read the first character of the input text line. We check if it is either A, C, D, I, J, L, N, O, S or X. If the answer is positive, we move to next character, otherwise, the current characte is possibly a white space or a wrong insttuction. If for example, the first character was A, the second character from the input now has to be either D or N. Otherwise we have an invalid input. We keep on doing this until we end up at a hexagone or detect an error.</p>
 

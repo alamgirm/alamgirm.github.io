@@ -18,7 +18,7 @@
 	  <pubDate>2017-06-23T02:18:00-04:00</pubDate>
 	  <guid>/blog//basics-of-block-storage-device</guid>
 	  <description><![CDATA[
-	     <p><img src="assets/images/2017/2017_06_hard_disk.png" alt="Hard disk" class="leftimg" /> Today’s mass storage devices include magnetic hard disk, solid state drive, and often flash drive. Though technologically quite different, all these storage classes have one thing in common: they are accessed in a bigger chunk of data unit, not by a byte. This unit of access is called block (sometimes also called page). The internal technology, organizational structure etc could be whatever but the storage device’s adapter IDE/SATA/PATA/SCSI exposes the storage in a uniform manner to the operating system.</p>
+	     <p><img src="/blog/assets/images/2017/2017_06_hard_disk.png" alt="Hard disk" class="leftimg" /> Today’s mass storage devices include magnetic hard disk, solid state drive, and often flash drive. Though technologically quite different, all these storage classes have one thing in common: they are accessed in a bigger chunk of data unit, not by a byte. This unit of access is called block (sometimes also called page). The internal technology, organizational structure etc could be whatever but the storage device’s adapter IDE/SATA/PATA/SCSI exposes the storage in a uniform manner to the operating system.</p>
 
 <!--more-->
 
@@ -38,7 +38,7 @@
 <p>A physical disk drive can be logically divided into more than one unit and accessed as an independent storage, even by different operating system. There are mainly two schemes on PCs to do that: the legacy MBR (master boot record), and newer GPT (GUID Partition Table). Apple has its own scheme.</p>
 
 <h4 id="master-boot-record-mbr">Master Boot Record (MBR)</h4>
-<p>Ignoring the wording “boot record”, lets pretend “MBR” is a scheme to have multiple partitions in a single physical disk drive. The information about the partions (and more) are stored in the first (LBA=0) Block (also a sector for hard disk) of a drive. An “MBR” partitioning scheme can have a maximum of 4 partitions (all 4 primary or 3 primary and 1 extended which in turn can have more <code class="highlighter-rouge">logical partitions</code> within it).  The first primary partion, called <code class="highlighter-rouge">system partition</code> stores opeating system boot files. A layout of a disk with “MBR” scheme is shown below: <img src="assets/images/2017/2017_06_23_ms_mbr.gif" alt="MBR Scheme" title="MBR scheme" />
+<p>Ignoring the wording “boot record”, lets pretend “MBR” is a scheme to have multiple partitions in a single physical disk drive. The information about the partions (and more) are stored in the first (LBA=0) Block (also a sector for hard disk) of a drive. An “MBR” partitioning scheme can have a maximum of 4 partitions (all 4 primary or 3 primary and 1 extended which in turn can have more <code class="highlighter-rouge">logical partitions</code> within it).  The first primary partion, called <code class="highlighter-rouge">system partition</code> stores opeating system boot files. A layout of a disk with “MBR” scheme is shown below: <img src="/blog/assets/images/2017/2017_06_23_ms_mbr.gif" alt="MBR Scheme" title="MBR scheme" />
 The first 440 bytes in the MBR that reads Master Boot Code in the picture is actually executable code. When a PC powers up, the BIOS, as part of the booting proceess, reads those codes and execute them.</p>
 
 <p>Structure of different versions of “MBR” can be found in <a href="https://en.wikipedia.org/wiki/Master_boot_record"> Wikipedia MBR</a> enry.</p>
@@ -47,7 +47,7 @@ The first 440 bytes in the MBR that reads Master Boot Code in the picture is act
 <p>More than one primary partions can have a bootable operating system. The first sector on a partion is boot sector (if it has boot record). Similar to master boot code, boot sector can have executable code that the BIOS or a boot loader loads and executes. The boot sector is only valid for a partion, that is marked as <code class="highlighter-rouge">bootable</code> with a special signature.</p>
 
 <h4 id="guid-partition-table-gpt">GUID Partition Table (GPT)</h4>
-<p>Among the few limitations of “MBR” scheme, the partition table entries indicate the begining/ending of a partition as 32-bit LBA. This imposes a limitation of maximum 2TB disk capacity. GPT removes that restrictions, uses 64 bits for LBA, and supports upto 128 partitions. Though originally developed as part of EFI, GPT scheme however leaves the legacy LBA=0 <code class="highlighter-rouge">Protective MBR</code> untouched. An example of a GPT scheme is shown below: <img src="assets/images/2017/2017_06_23_gpt.png" /></p>
+<p>Among the few limitations of “MBR” scheme, the partition table entries indicate the begining/ending of a partition as 32-bit LBA. This imposes a limitation of maximum 2TB disk capacity. GPT removes that restrictions, uses 64 bits for LBA, and supports upto 128 partitions. Though originally developed as part of EFI, GPT scheme however leaves the legacy LBA=0 <code class="highlighter-rouge">Protective MBR</code> untouched. An example of a GPT scheme is shown below: <img src="/blog/assets/images/2017/2017_06_23_gpt.png" /></p>
 
 <h4 id="credits">Credits</h4>
 <ul>

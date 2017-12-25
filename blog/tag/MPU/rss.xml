@@ -18,14 +18,14 @@
 	  <pubDate>2017-06-12T02:18:00-04:00</pubDate>
 	  <guid>/blog//earlier-microprocessor-Zilog-Z80</guid>
 	  <description><![CDATA[
-	     <p>The CPU design team at Intel in the 70’s was led by <a href="https://en.wikipedia.org/wiki/Federico_Faggin">Federico Faggin</a>. After resigning from Intel Federico formed the start-up company Zilog, for design, development and marketing of microprocessor. <img src="assets/images/2017/17_06_12_Zilog_Z80.jpg" alt="Zilog Z80" class="rightimg" /> Zilog Z80 was their first product to hit the market, aimed for embedded applications. Its direct competitor was Intel 8080, and in fact Zilog always highligheted in commercials about its superiority over 8080. Compared to Intel 8080 which required +12V, -5V and +5V, Z80 needed only one +5V supply, had simple clock, and supported more registers, instructions, addressing modes, and even non-maskable interrupts.   Z80 was a gigantic success that helped the company grew from just elevel to a thousand employees in just two years. Many other semiconductor companies around the world copied the design of Z80 and sold their chips. Famaous Atari computuers, the first one to have color display were built on Zilog Z80.</p>
+	     <p>The CPU design team at Intel in the 70’s was led by <a href="https://en.wikipedia.org/wiki/Federico_Faggin">Federico Faggin</a>. After resigning from Intel Federico formed the start-up company Zilog, for design, development and marketing of microprocessor. <img src="/blog/assets/images/2017/17_06_12_Zilog_Z80.jpg" alt="Zilog Z80" class="rightimg" /> Zilog Z80 was their first product to hit the market, aimed for embedded applications. Its direct competitor was Intel 8080, and in fact Zilog always highligheted in commercials about its superiority over 8080. Compared to Intel 8080 which required +12V, -5V and +5V, Z80 needed only one +5V supply, had simple clock, and supported more registers, instructions, addressing modes, and even non-maskable interrupts.   Z80 was a gigantic success that helped the company grew from just elevel to a thousand employees in just two years. Many other semiconductor companies around the world copied the design of Z80 and sold their chips. Famaous Atari computuers, the first one to have color display were built on Zilog Z80.</p>
 
 <!--more-->
 
 <h2 id="zilog-z80">Zilog Z80</h2>
 <p>Looking at the internal block diagram, Zilog Z80 has similar architecture as compared to Intel 8080, same 8-bit data bus and registers, and 16-bit address bus. What is surprising is the inclusion of two sets of general purpose registers. Namely, the registers <code class="highlighter-rouge">W, Z, B, C, D, E, H, L</code> can used in pairs to act like 16-bit as with 8080, but their contents can be saved by copying to a whole set of mirrored registers named <code class="highlighter-rouge">W', Z', B', C', D', E', H', L'</code>- and this could be done using just one EXX instruction. The accumulator <code class="highlighter-rouge">A</code> has also a friend <code class="highlighter-rouge">A'</code> also do the flags set <code class="highlighter-rouge">F</code> as <code class="highlighter-rouge">F'</code>. These primed registers could not be loaded directly, only could have swapped values with their counterparts. The special purpose registers are similar, bearing similar names too: PC (program counter), SP (stack pointer), IX and IY (both index registers). This feature of having two sets of registers make programming much easier when writing sub-routine or interrupt service.</p>
 
-<p><img src="assets/images/2017/17_06_12_Zilog_Z80_arch.png" alt="Zilog 80" title="Zilog Z80 CPU architecture." /></p>
+<p><img src="/blog/assets/images/2017/17_06_12_Zilog_Z80_arch.png" alt="Zilog 80" title="Zilog Z80 CPU architecture." /></p>
 
 <p>Zilog Z80 supported maximum of 64KB memory, and additional 256 I/O ports each. Dymanic memories could be used without specilized refresh circuit as the CPU itself provides one.</p>
 
@@ -59,7 +59,7 @@
 	  <pubDate>2017-06-07T21:18:00-04:00</pubDate>
 	  <guid>/blog//earlier-microprocessor-intel-8080</guid>
 	  <description><![CDATA[
-	     <p>The history of what we know as microprocessor (MPU) began with Intel Corporation’s 4004 chip, which they built to replace hardwired logic in simple applications. It was a 4-bit processor with very little programming capability which they improved in later 4040 processor. <img src="assets/images/2017/17_06_08_Intel_8080.png" alt="Intel 8080" class="leftimg" /> Intel followed the development with 8008, and then 8080 both 8-bit processors with better programming support. In fact 8080 was used in a wide range of applications, including the design of few personal computers (PC), and industrial robots. It is the first processor that revolutionized the industry and dictated the future of microprocessors.  Intel 8080 still required extra chips, such as memory, bus controller, clock generator etc to work as a system. This was later improved upon in 8085 that was what we now call system on a chip (SoC)- a chip with built-in everything that requires very little extra to work as a system.</p>
+	     <p>The history of what we know as microprocessor (MPU) began with Intel Corporation’s 4004 chip, which they built to replace hardwired logic in simple applications. It was a 4-bit processor with very little programming capability which they improved in later 4040 processor. <img src="/blog/assets/images/2017/17_06_08_Intel_8080.png" alt="Intel 8080" class="leftimg" /> Intel followed the development with 8008, and then 8080 both 8-bit processors with better programming support. In fact 8080 was used in a wide range of applications, including the design of few personal computers (PC), and industrial robots. It is the first processor that revolutionized the industry and dictated the future of microprocessors.  Intel 8080 still required extra chips, such as memory, bus controller, clock generator etc to work as a system. This was later improved upon in 8085 that was what we now call system on a chip (SoC)- a chip with built-in everything that requires very little extra to work as a system.</p>
 
 <!--more-->
 
@@ -68,7 +68,7 @@
 
 <p>An 8080 is an 8-bit processor, fabricated as a 40-pin chip. It had 8 pins for data I/O, 16 pins for address, 4 control inputs <code class="highlighter-rouge">HOLD, READY, RESET, INT</code> and 6 control outputs <code class="highlighter-rouge">WAIT, HOLDA, INTE, DBIN, SYNCH, WR</code>. Looking at the architecture, an 8080 has accumultor, temporary register, instruction register, stack pointer and few <code class="highlighter-rouge">B, C, D, E, H, I</code> general purpose registers. Some of the registers <code class="highlighter-rouge">BC, DE, HI</code> can be thought of paired and used as a single 16-bit register when programming.</p>
 
-<p><img src="assets/images/2017/17_06_08_Intel_8080_arch.png" alt="Intel 8080" title="Intel 8080 CPU architecture." /></p>
+<p><img src="/blog/assets/images/2017/17_06_08_Intel_8080_arch.png" alt="Intel 8080" title="Intel 8080 CPU architecture." /></p>
 
 <p>Instructions have different lengths, most are one or two bytes, few are three bytes. The program counter (PC) however knows this fact when incrementing its value to point to the next instruction in memory. Same memory holds both data and program, and maximum of 64KB is supported. However, 8080 also supports what is called I/O address space. That means, I/O devices could be attached to the data and address bus, (in conjunction with <code class="highlighter-rouge">READY, WAIT, HOLD, HOLDA</code>) without sharing the memory address space. A total of 256 input and 256 output ports are supported; each port has 8-bit parallel data transfer capability.</p>
 
@@ -102,7 +102,7 @@
 	  <pubDate>2017-06-03T19:18:00-04:00</pubDate>
 	  <guid>/blog//design-a-simple-microprocessor</guid>
 	  <description><![CDATA[
-	     <p>A microprocessor is physicaly a semiconductor chip with lots of pins to connect to other chips but what makes it special is that it can execute certain instructions. Here execution means that when certain electrical signals are presented at the inputs of the microprocessor, is produces some appropriate signals at its output pins. How does a microprocessor do that, or how can we design our own microprocessor to understand the inner working?  <img src="assets/images/2017/17_06_03_intel8086.png" alt="Intel 8086 MPU chip. Z80" class="rightimg" />This posts discusses how to do just that. While doing so, we will also design an instruction set for the microprocessor, and demonstrate how programs are written, and then made to get executed by the processor.</p>
+	     <p>A microprocessor is physicaly a semiconductor chip with lots of pins to connect to other chips but what makes it special is that it can execute certain instructions. Here execution means that when certain electrical signals are presented at the inputs of the microprocessor, is produces some appropriate signals at its output pins. How does a microprocessor do that, or how can we design our own microprocessor to understand the inner working?  <img src="/blog/assets/images/2017/17_06_03_intel8086.png" alt="Intel 8086 MPU chip. Z80" class="rightimg" />This posts discusses how to do just that. While doing so, we will also design an instruction set for the microprocessor, and demonstrate how programs are written, and then made to get executed by the processor.</p>
 
 <!--more-->
 
@@ -118,7 +118,7 @@
 <h3 id="arithmetic-and-logic-unit">Arithmetic and Logic Unit</h3>
 <p>Often called the workhorse of a micropriocessor, an ALU is a logic circuit that can perform certain operations. At the simplest level, it should be capabale of adding/subtracting two numbers, doing bitwise and/or/not opearations. If one wants to build an ALU, what he needs are: adder/subracter chip, logic gates, and a multiplexer to control which operation is going to take place.</p>
 
-<p><img src="assets/images/2017/17_06_03_simple_cpu_block.png" alt="MPU Block diagram" title="Block diagram of a MPU." /></p>
+<p><img src="/blog/assets/images/2017/17_06_03_simple_cpu_block.png" alt="MPU Block diagram" title="Block diagram of a MPU." /></p>
 
 <h1 id="design-considerations">Design Considerations:</h1>
 <p>The first thing that I considered in designing the MPU is bus width, it is 8-bit. What it means that all the general purpose registers, the word-width of ALU etc is 8-bit. The second point is the width of each instruction, 8-bit is way too low since each instruction embodies quite a few bit of information for the MPU. The choice was made it to have 16-bit. The third major decision is the architecture-  whether to have separate memories for program and data. In this design I chose to have separate memories. Once these decisions are taken, some more points follow: how many general purpose registers to have, how many flag bits to have, and whether or not to have any registers to feed/buffer the ALU.</p>
@@ -373,7 +373,7 @@ Below is a table showing examples of supported features.</p>
 
 <h1 id="implementation">Implementation:</h1>
 <p>The MPU is implemented in VHDL (a language to describe hardware to create!) I used Cadence to compile the model, and finally floor-planned the chip as a 20-pin setup using Cadence Encounter. The final result is shown:
-<img src="/assets/images/2017/17_06_03_simple_cpu_final.png" alt="MPU Floorplan" title="Final MPU." /></p>
+<img src="/blog/assets/images/2017/17_06_03_simple_cpu_final.png" alt="MPU Floorplan" title="Final MPU." /></p>
 
 <h1 id="tests">Tests:</h1>
 <p>The CPU was not fabricated, but was tested for functionality with Cadence Design Vision and found fully functional as expected.</p>

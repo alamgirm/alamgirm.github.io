@@ -18,7 +18,7 @@
 	  <pubDate>2017-06-03T19:18:00-04:00</pubDate>
 	  <guid>/blog//design-a-simple-microprocessor</guid>
 	  <description><![CDATA[
-	     <p>A microprocessor is physicaly a semiconductor chip with lots of pins to connect to other chips but what makes it special is that it can execute certain instructions. Here execution means that when certain electrical signals are presented at the inputs of the microprocessor, is produces some appropriate signals at its output pins. How does a microprocessor do that, or how can we design our own microprocessor to understand the inner working?  <img src="assets/images/2017/17_06_03_intel8086.png" alt="Intel 8086 MPU chip. Z80" class="rightimg" />This posts discusses how to do just that. While doing so, we will also design an instruction set for the microprocessor, and demonstrate how programs are written, and then made to get executed by the processor.</p>
+	     <p>A microprocessor is physicaly a semiconductor chip with lots of pins to connect to other chips but what makes it special is that it can execute certain instructions. Here execution means that when certain electrical signals are presented at the inputs of the microprocessor, is produces some appropriate signals at its output pins. How does a microprocessor do that, or how can we design our own microprocessor to understand the inner working?  <img src="/blog/assets/images/2017/17_06_03_intel8086.png" alt="Intel 8086 MPU chip. Z80" class="rightimg" />This posts discusses how to do just that. While doing so, we will also design an instruction set for the microprocessor, and demonstrate how programs are written, and then made to get executed by the processor.</p>
 
 <!--more-->
 
@@ -34,7 +34,7 @@
 <h3 id="arithmetic-and-logic-unit">Arithmetic and Logic Unit</h3>
 <p>Often called the workhorse of a micropriocessor, an ALU is a logic circuit that can perform certain operations. At the simplest level, it should be capabale of adding/subtracting two numbers, doing bitwise and/or/not opearations. If one wants to build an ALU, what he needs are: adder/subracter chip, logic gates, and a multiplexer to control which operation is going to take place.</p>
 
-<p><img src="assets/images/2017/17_06_03_simple_cpu_block.png" alt="MPU Block diagram" title="Block diagram of a MPU." /></p>
+<p><img src="/blog/assets/images/2017/17_06_03_simple_cpu_block.png" alt="MPU Block diagram" title="Block diagram of a MPU." /></p>
 
 <h1 id="design-considerations">Design Considerations:</h1>
 <p>The first thing that I considered in designing the MPU is bus width, it is 8-bit. What it means that all the general purpose registers, the word-width of ALU etc is 8-bit. The second point is the width of each instruction, 8-bit is way too low since each instruction embodies quite a few bit of information for the MPU. The choice was made it to have 16-bit. The third major decision is the architecture-  whether to have separate memories for program and data. In this design I chose to have separate memories. Once these decisions are taken, some more points follow: how many general purpose registers to have, how many flag bits to have, and whether or not to have any registers to feed/buffer the ALU.</p>
@@ -289,7 +289,7 @@ Below is a table showing examples of supported features.</p>
 
 <h1 id="implementation">Implementation:</h1>
 <p>The MPU is implemented in VHDL (a language to describe hardware to create!) I used Cadence to compile the model, and finally floor-planned the chip as a 20-pin setup using Cadence Encounter. The final result is shown:
-<img src="/assets/images/2017/17_06_03_simple_cpu_final.png" alt="MPU Floorplan" title="Final MPU." /></p>
+<img src="/blog/assets/images/2017/17_06_03_simple_cpu_final.png" alt="MPU Floorplan" title="Final MPU." /></p>
 
 <h1 id="tests">Tests:</h1>
 <p>The CPU was not fabricated, but was tested for functionality with Cadence Design Vision and found fully functional as expected.</p>

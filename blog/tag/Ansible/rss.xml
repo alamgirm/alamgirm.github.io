@@ -18,7 +18,7 @@
 	  <pubDate>2017-12-16T15:18:00-05:00</pubDate>
 	  <guid>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</guid>
 	  <description><![CDATA[
-	     <p><img src="assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+	     <p><img src="/blog/assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
 DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.</p>
 
 <!--more-->

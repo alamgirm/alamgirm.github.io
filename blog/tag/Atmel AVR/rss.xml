@@ -18,7 +18,7 @@
 	  <pubDate>2017-08-09T16:18:00-04:00</pubDate>
 	  <guid>/blog//Barebone-AVR-Programming-LED-Blinker</guid>
 	  <description><![CDATA[
-	     <p><img src="assets/images/2017/2017_08_09_AVR_board.png" alt="AVR Board" class="leftimg" />
+	     <p><img src="/blog/assets/images/2017/2017_08_09_AVR_board.png" alt="AVR Board" class="leftimg" />
 Arduino is fun and easy, and it gives the best introducton to AVR processors. However, if you want to build something useful, you’ll soon hit the wall. Arduinio has a huge collection of shields, and supporting libraries for them, but developing a well-designed system is difficult when it comes to debugging. This is due to the fact that Arduino IDE hides most of the intricacies of AVR MCU. If you are used to debug program using breakpoints, stepping and tracing through lines of code, the Arduino IDE is no help. The AVR Studio development environment from Atmel is the saviour here. However, it can’t connect to an Arduino board through the USB port. Fortunately, most Arduino boards have a special header called ICE (in-circuit-emulator), which is actually an SPI (serial peripheral interface) connector. A special hardware tool, for example AVR ISP MK II is needed to connect. There are other alternatives too.
 <!--more--></p>
 
@@ -80,7 +80,7 @@ Following is the code I typed in into TestBoard.c file.</p>
 <p>The C program code first defines the processor clock frequncy via <code class="highlighter-rouge">F_CPU</code>. This is required for the delay functions used in the program. The program first initializes Port A as all output, and sends zero to the port A. This turns the LEDs off (if they were ON before). Then we enter a loop where we first write 1 to first LED and 0 to second LED. After a second delay, we write 0 to first LED and 1 to the second LED. Then again a second of delay. This gives an impression of alternate flushing LEDs.</p>
 
 <h3 id="output">Output</h3>
-<p>A short clip showing the LEDs <a href="assets/images/2017/2017_08_09_LED_Blinking.3gp">blinking</a>.</p>
+<p>A short clip showing the LEDs <a href="/blog/assets/images/2017/2017_08_09_LED_Blinking.3gp">blinking</a>.</p>
 
 <h3 id="links-to-software-and-hardware">Links to software and hardware</h3>
 
@@ -100,7 +100,7 @@ Following is the code I typed in into TestBoard.c file.</p>
 	  <pubDate>2017-06-14T08:18:00-04:00</pubDate>
 	  <guid>/blog//Inside-ATmega-AVR</guid>
 	  <description><![CDATA[
-	     <p><img src="assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
+	     <p><img src="/blog/assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
 
 <!--more-->
 
@@ -118,7 +118,7 @@ Following is the code I typed in into TestBoard.c file.</p>
   <li>CPU core (ALU, Program counter, general purpose registers etc)</li>
 </ul>
 
-<p><img src="assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+<p><img src="/blog/assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
 
 <p>AVR is based on modidfied Harvard architecture, so it is expected the program and data memory space tos be seperate. In addition to that, AVR allows readonly access to any data residing in the program memory, but no writes are allowed by the program itself. In addition to the memories for data and programs, AVR also has few bits of EEPROM for storing CPU configuration parameters (we’ll see later). When compared to a CPU like Intel 8080 or Zilog Z80, the ATmega has lots of other functionalities buil-it, to be justly called a microcontroller. Lets talk them in detail:</p>
 
@@ -139,7 +139,7 @@ Following is the code I typed in into TestBoard.c file.</p>
 
 <h4 id="timerscounters">Timers/Counters</h4>
 <p>ATmega has on chip timers/counters, and thre are two kinds. The first kind is a 8-bit synchronous where the clock signal is derived from the CPU clock. The second kinds allows connecting an external clock circtuit to trigger the timer/counter and works independent of the CPU clock. Each of the timer/counter available can operate in a multiple of modes depending on application needs.
-<img src="/assets/images/2017/17_06_14_Atmel_ATmega_arch2.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+<img src="/blog/assets/images/2017/17_06_14_Atmel_ATmega_arch2.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
 
 <h5 id="other-features">Other Features</h5>
 
@@ -166,7 +166,7 @@ Following is the code I typed in into TestBoard.c file.</p>
 	  <pubDate>2017-06-13T02:18:00-04:00</pubDate>
 	  <guid>/blog//modern-microcontroller-avr-group</guid>
 	  <description><![CDATA[
-	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
+	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="/blog/assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
 
 <!--more-->
 

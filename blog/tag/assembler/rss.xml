@@ -18,7 +18,7 @@
 	  <pubDate>2017-06-04T07:18:00-04:00</pubDate>
 	  <guid>/blog//design-a-simple-assembler</guid>
 	  <description><![CDATA[
-	     <p>Following on the design of a simple microprocessor in the <a href="design-a-simple-microprocessor.html ">last post</a>, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.</p>
+	     <p>Following on the design of a simple microprocessor in the <a href="/blog/design-a-simple-microprocessor.html ">last post</a>, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.</p>
 
 <!--more-->
 
@@ -29,7 +29,7 @@
 <pre>NOP, STOP, DUMP, LOAD, STOR, XCHG, JMP, JMPE, ADD, 
 SUB, INC, DEC, AND, OR, NOT, XOR, CMP, COMP</pre>
 
-<p>And if you look at the opcodes for these instructions <a href="design-a-simple-microprocessor.html#opcode_mnemonic">mnemonics</a>, the corresponding machine codes should be (in hexadecimal): <br /></p>
+<p>And if you look at the opcodes for these instructions <a href="/blog/design-a-simple-microprocessor.html#opcode_mnemonic">mnemonics</a>, the corresponding machine codes should be (in hexadecimal): <br /></p>
 
 <pre>
 0, 1, 2, 3, 4, 5, 6, 7, 8, 
@@ -41,7 +41,7 @@ SUB, INC, DEC, AND, OR, NOT, XOR, CMP, COMP</pre>
 
 <p>A finite automata (also called state machine) is a perfect tool for modeling the parsing process. Given the 18 keywords that we need to detect, the following is an automata that could do that:</p>
 
-<p><img src="/assets/images/2017/17_06_04_keyword_automata.png" alt="Finite Automata" title="Finite automata for parsing keywords." /></p>
+<p><img src="/blog/assets/images/2017/17_06_04_keyword_automata.png" alt="Finite Automata" title="Finite automata for parsing keywords." /></p>
 
 <p>How it works is quite easy to understand. Say we have one line of text from a program written in assesbly language. We begin at the round rectangle block <code class="highlighter-rouge">Begin</code> and read the first character of the input text line. We check if it is either A, C, D, I, J, L, N, O, S or X. If the answer is positive, we move to next character, otherwise, the current characte is possibly a white space or a wrong insttuction. If for example, the first character was A, the second character from the input now has to be either D or N. Otherwise we have an invalid input. We keep on doing this until we end up at a hexagone or detect an error.</p>
 
