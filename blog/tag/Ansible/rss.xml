@@ -3,7 +3,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>https://alamgirm.github.io/blog/</title>
+      <title>https://alamgirm.github.io/blog</title>
    
    <link>https://alamgirm.github.io</link>
    <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
@@ -13,32 +13,42 @@
    
 	<item>
 	  <title>Continuous Integration and Continuous Development on AWS : part III - Ansible</title>
-	  <link>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</link>
+	  <link>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-12-16T15:18:00-05:00</pubDate>
-	  <guid>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</guid>
+	  <guid>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</guid>
 	  <description><![CDATA[
-	     <ol>
+	     <p><img src="assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.</p>
+
+<!--more-->
+
+<ol>
   <li>loginto the Ansible Controller instance</li>
-  <li>Update packages and install pip (that will install ansible)
-For RH epel needs to be installed first
+  <li>
+    <p>Update packages and install pip (that will install ansible). For RH epel needs to be installed first</p>
+
     <pre>
-</pre>
-    <ul>
-      <li>Sudo to root: $ sudo su</li>
-      <li>Update the OS:# yum -y update</li>
-      <li>Install wget: # yum -y install wget</li>
-      <li>Download epel repo: # wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</li>
-      <li>Install epel repo: # yum -y install epel-release-latest-7.noarch.rpm</li>
-    </ul>
-    <p>&lt;/pre&gt;
-  Now the pip installer</p>
-    <pre>
-- Install pip: # yum -y install python-pip
-- Install ansible: # pip install ansible
+- Sudo to root: $ sudo su
+- Update the OS:# yum -y update
+- Install wget: # yum -y install wget
+- Download epel repo: # wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+- Install epel repo: # yum -y install epel-release-latest-7.noarch.rpm 
 </pre>
   </li>
-  <li>Install git client
+</ol>
+
+<p>Now the pip installer</p>
+
+<pre>
+   - Install pip: # yum -y install python-pip
+   - Install ansible: # pip install ansible
+   </pre>
+
+<ol>
+  <li>
+    <p>Install git client</p>
+
     <pre>
 # yum -y install git
 </pre>
@@ -47,15 +57,22 @@ For RH epel needs to be installed first
     <p>Copy the private key file <code class="highlighter-rouge">HostForAnsibleKey.pem</code> into the home directory.
 The controller node need this key to access the host.</p>
   </li>
-  <li>Manually create an inventory of all the resources. Store it as <code class="highlighter-rouge">/etc/ansible/hosts</code>
+  <li>
+    <p>Manually create an inventory of all the resources. Store it as <code class="highlighter-rouge">/etc/ansible/hosts</code></p>
+
     <pre>
 [test-servers]
  10.179.44.7
 </pre>
-    <p>[ Alternatively I could use the ec2.py script to list]</p>
   </li>
+</ol>
+
+<p>[ Alternatively I could use the ec2.py script to list]</p>
+
+<ol>
   <li>Configure ansible. Create a file named <code class="highlighter-rouge">ansible.cfg</code> inside folder <code class="highlighter-rouge">ansible</code>.</li>
 </ol>
+
 <pre>
 [defaults]
 inventory     = /etc/ansible/hosts
@@ -69,19 +86,19 @@ nocows        = 1
 <ol>
   <li>Check and see if ansible can access the host.</li>
 </ol>
+
 <pre>
 ansible -m ping 'test-servers' --private-key ../HostForAnsibleKey.pem
 </pre>
 
 <p>If it works fine, the result should be:</p>
+
 <pre>
 10.179.44.7 | SUCCESS =&gt; {
     "changed": false, 
     "ping": "pong"
 }
 </pre>
-
-<!--more-->
 
 <h3 id="creating-an-ansible-playbook">Creating an ansible playbook</h3>
 

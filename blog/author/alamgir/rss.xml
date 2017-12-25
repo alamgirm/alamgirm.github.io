@@ -3,7 +3,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>https://alamgirm.github.io/blog/</title>
+      <title>https://alamgirm.github.io/blog</title>
    
    <link>https://alamgirm.github.io</link>
    <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
@@ -13,32 +13,42 @@
    
 	<item>
 	  <title>Continuous Integration and Continuous Development on AWS : part III - Ansible</title>
-	  <link>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</link>
+	  <link>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-12-16T15:18:00-05:00</pubDate>
-	  <guid>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</guid>
+	  <guid>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III</guid>
 	  <description><![CDATA[
-	     <ol>
+	     <p><img src="assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.</p>
+
+<!--more-->
+
+<ol>
   <li>loginto the Ansible Controller instance</li>
-  <li>Update packages and install pip (that will install ansible)
-For RH epel needs to be installed first
+  <li>
+    <p>Update packages and install pip (that will install ansible). For RH epel needs to be installed first</p>
+
     <pre>
-</pre>
-    <ul>
-      <li>Sudo to root: $ sudo su</li>
-      <li>Update the OS:# yum -y update</li>
-      <li>Install wget: # yum -y install wget</li>
-      <li>Download epel repo: # wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</li>
-      <li>Install epel repo: # yum -y install epel-release-latest-7.noarch.rpm</li>
-    </ul>
-    <p>&lt;/pre&gt;
-  Now the pip installer</p>
-    <pre>
-- Install pip: # yum -y install python-pip
-- Install ansible: # pip install ansible
+- Sudo to root: $ sudo su
+- Update the OS:# yum -y update
+- Install wget: # yum -y install wget
+- Download epel repo: # wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+- Install epel repo: # yum -y install epel-release-latest-7.noarch.rpm 
 </pre>
   </li>
-  <li>Install git client
+</ol>
+
+<p>Now the pip installer</p>
+
+<pre>
+   - Install pip: # yum -y install python-pip
+   - Install ansible: # pip install ansible
+   </pre>
+
+<ol>
+  <li>
+    <p>Install git client</p>
+
     <pre>
 # yum -y install git
 </pre>
@@ -47,15 +57,22 @@ For RH epel needs to be installed first
     <p>Copy the private key file <code class="highlighter-rouge">HostForAnsibleKey.pem</code> into the home directory.
 The controller node need this key to access the host.</p>
   </li>
-  <li>Manually create an inventory of all the resources. Store it as <code class="highlighter-rouge">/etc/ansible/hosts</code>
+  <li>
+    <p>Manually create an inventory of all the resources. Store it as <code class="highlighter-rouge">/etc/ansible/hosts</code></p>
+
     <pre>
 [test-servers]
  10.179.44.7
 </pre>
-    <p>[ Alternatively I could use the ec2.py script to list]</p>
   </li>
+</ol>
+
+<p>[ Alternatively I could use the ec2.py script to list]</p>
+
+<ol>
   <li>Configure ansible. Create a file named <code class="highlighter-rouge">ansible.cfg</code> inside folder <code class="highlighter-rouge">ansible</code>.</li>
 </ol>
+
 <pre>
 [defaults]
 inventory     = /etc/ansible/hosts
@@ -69,19 +86,19 @@ nocows        = 1
 <ol>
   <li>Check and see if ansible can access the host.</li>
 </ol>
+
 <pre>
 ansible -m ping 'test-servers' --private-key ../HostForAnsibleKey.pem
 </pre>
 
 <p>If it works fine, the result should be:</p>
+
 <pre>
 10.179.44.7 | SUCCESS =&gt; {
     "changed": false, 
     "ping": "pong"
 }
 </pre>
-
-<!--more-->
 
 <h3 id="creating-an-ansible-playbook">Creating an ansible playbook</h3>
 
@@ -176,12 +193,12 @@ dependencies:
 
 	<item>
 	  <title>Continuous Integration and Continuous Deployment on AWS : part II - CloudFormation</title>
-	  <link>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-II</link>
+	  <link>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-II</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-12-16T15:18:00-05:00</pubDate>
-	  <guid>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-II</guid>
+	  <guid>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-II</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+	     <p><img src="assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
 In the <a href="Continuous-Integration-and-Continuous-Development-using-AWS-part-I.html"> last post</a> we created a limited-rights IAM user that we’ll use in this post and in future posts to create different infrastructure resources on AWS Cloud. We can defintely use the account to login into AWS Management Console, and create and manage resources, but that would be too tedious for not-too-small project, and more importatnly against the philosohpy of DevOps. In DevOps philosophy we’d like to automate everything, including creating infrastrure using code. In this post, we’ll see how we can create few EC2 intances, create SSH key pairs, and Security Group to controll access to the EC2 instances- all using code. We’ll login into the AWS Management Console to verify that everything is created as expected.</p>
 
 <!--more-->
@@ -301,7 +318,7 @@ print(t.to_json())
 <p>Once we have the template file, we log into the Maganagement Console, and select <code class="highlighter-rouge">CloudFormation</code> service. Click on <code class="highlighter-rouge">Create Stack</code>, then choose <code class="highlighter-rouge">Upload a template to Amazon S3</code> and select our template file. Clicking Next and then giving the stack a name takes to Options page. One more click on next button brings a summary of the template. Hitting the Create button starts craeting the EC2 instances, and the security group related to them.</p>
 
 <p>To verify, we go to the EC2 dashboard and click on Instances:
- <img src="/assets/images/2017/17_12_17/ec2-instances.png" alt="EC2 instances" class="leftimg" /></p>
+ <img src="assets/images/2017/17_12_17/ec2-instances.png" alt="EC2 instances" class="leftimg" /></p>
 
 <p>We can also verify the security groups if wished.</p>
 
@@ -319,30 +336,30 @@ print(t.to_json())
 
 	<item>
 	  <title>Continuous Integration and Continuous Deployment on AWS : part I - setup IAM</title>
-	  <link>//Continuous-Integration-and-Continuous-Development-using-AWS-part-I</link>
+	  <link>/blog//Continuous-Integration-and-Continuous-Development-using-AWS-part-I</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-12-16T15:18:00-05:00</pubDate>
-	  <guid>//Continuous-Integration-and-Continuous-Development-using-AWS-part-I</guid>
+	  <guid>/blog//Continuous-Integration-and-Continuous-Development-using-AWS-part-I</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+	     <p><img src="assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
 DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.</p>
 
 <!--more-->
 
 <h3 id="aws-setup">AWS Setup</h3>
 <p>The first thing someone should do is to create an IAM user, and not use the root or main AWS account. It is straightforward- login to your AWS root account at: console.aws.amazon.com
-<img src="/assets/images/2017/17_12_16/aws-root-login.png" alt="AWS Root login" class="leftimg" />
+<img src="assets/images/2017/17_12_16/aws-root-login.png" alt="AWS Root login" class="leftimg" />
 If you have multi-factor authentication (MFA) enabled, a second screen will be appearing asking for authentication code. After successful login appears the AWS dashboard that lists many of the services AWS offers. A searchbox is readily available to quickly navigate to a service. We need the IAM service. Clicking on IAM will take to the IAM dashboard:
-<img src="/assets/images/2017/17_12_16/iam-dashboard.png" alt="IAM dashboard" class="leftimg" /></p>
+<img src="assets/images/2017/17_12_16/iam-dashboard.png" alt="IAM dashboard" class="leftimg" /></p>
 
 <p>We need to create a new user (with limited priviledges) for all the exercises related to DevOps tools. Click on <code class="highlighter-rouge">Users</code> on the left pane, then <code class="highlighter-rouge">Add User</code> on the top to initiate the user creation process.
-<img src="/assets/images/2017/17_12_16/iam-add-user.png" alt="IAM Add User" class="leftimg" /></p>
+<img src="assets/images/2017/17_12_16/iam-add-user.png" alt="IAM Add User" class="leftimg" /></p>
 
 <p>I am using <code class="highlighter-rouge">DevOpUser</code> as user name, and checking both <em>Programmatic</em> and <em>AWS Management Console</em> access check boxes. I am letting AWS autogenerate a password, but not forcing the user to reset the password.  Hitting <em>Next</em> will take us to permissions.</p>
 
 <p>On Permissions screen, I am choosing the <em>Attach existing policies directly</em> option. Typing EC2 in the search box, I choose <code class="highlighter-rouge">EC2FullAceess</code> and <code class="highlighter-rouge">S3FullAccess</code>. Then follw next to finally create the user. I click on <strong>Download.csv</strong> button to save the login credentials for  newly created user <code class="highlighter-rouge">DevOpUser</code>. Also take note of the login url:
 <code class="highlighter-rouge">https://xxxxxx.signin.aws.amazon.com/console</code> (xxxxxx denotes string I removed for privacy).
-<img src="/assets/images/2017/17_12_16/iam-add-user-done.png" alt="IAM Add User" class="leftimg" /></p>
+<img src="assets/images/2017/17_12_16/iam-add-user-done.png" alt="IAM Add User" class="leftimg" /></p>
 
 <p>To keep things organized on my own local machine (a MacBook), I created a folder named <code class="highlighter-rouge">DevOps</code> under my home directory. The whole patch should be <code class="highlighter-rouge">/Users/&lt;username&gt;/DevOps</code>. I copy the credential file downloaded in the last step into this directory.</p>
 
@@ -377,7 +394,7 @@ If you have multi-factor authentication (MFA) enabled, a second screen will be a
 https://Root_Account_ID.signin.aws.amazon.com/console/
 </pre>
 <p>Where <code class="highlighter-rouge">Root_Accound_ID</code> is the either the account number or alias of the root account. Visiting the login link, and after providing the user name and password for <code class="highlighter-rouge">DevOpUser</code> I found this dashboard.
-<img src="/assets/images/2017/17_12_16/iam-user-dashboard.png" alt="User Dashboard" class="leftimg" />
+<img src="assets/images/2017/17_12_16/iam-user-dashboard.png" alt="User Dashboard" class="leftimg" />
 This dashboard allows creating and managing AWS services. In addition to this dashboard, AWS allows creating and managing service resouces via programmatic access. In the next post we’ll see how to create EC2 instances
 using AWS CLI (command line  interface).</p>
 
@@ -387,30 +404,30 @@ using AWS CLI (command line  interface).</p>
 
 	<item>
 	  <title>Continuous Integration and Continuous Development on AWS : part I - setup IAM</title>
-	  <link>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-I</link>
+	  <link>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-I</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-12-16T15:18:00-05:00</pubDate>
-	  <guid>//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-I</guid>
+	  <guid>/blog//Continuous-Integration-and-Continuous-Deployment-using-AWS-part-I</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+	     <p><img src="assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
 DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.</p>
 
 <!--more-->
 
 <h3 id="aws-setup">AWS Setup</h3>
 <p>The first thing someone should do is to create an IAM user, and not use the root or main AWS account. It is straightforward- login to your AWS root account at: console.aws.amazon.com
-<img src="/assets/images/2017/17_12_16/aws-root-login.png" alt="AWS Root login" class="leftimg" />
+<img src="assets/images/2017/17_12_16/aws-root-login.png" alt="AWS Root login" class="leftimg" />
 If you have multi-factor authentication (MFA) enabled, a second screen will be appearing asking for authentication code. After successful login appears the AWS dashboard that lists many of the services AWS offers. A searchbox is readily available to quickly navigate to a service. We need the IAM service. Clicking on IAM will take to the IAM dashboard:
-<img src="/assets/images/2017/17_12_16/iam-dashboard.png" alt="IAM dashboard" class="leftimg" /></p>
+<img src="assets/images/2017/17_12_16/iam-dashboard.png" alt="IAM dashboard" class="leftimg" /></p>
 
 <p>We need to create a new user (with limited priviledges) for all the exercises related to DevOps tools. Click on <code class="highlighter-rouge">Users</code> on the left pane, then <code class="highlighter-rouge">Add User</code> on the top to initiate the user creation process.
-<img src="/assets/images/2017/17_12_16/iam-add-user.png" alt="IAM Add User" class="leftimg" /></p>
+<img src="assets/images/2017/17_12_16/iam-add-user.png" alt="IAM Add User" class="leftimg" /></p>
 
 <p>I am using <code class="highlighter-rouge">DevOpUser</code> as user name, and checking both <em>Programmatic</em> and <em>AWS Management Console</em> access check boxes. I am letting AWS autogenerate a password, but not forcing the user to reset the password.  Hitting <em>Next</em> will take us to permissions.</p>
 
 <p>On Permissions screen, I am choosing the <em>Attach existing policies directly</em> option. Typing EC2 in the search box, I choose <code class="highlighter-rouge">EC2FullAceess</code> and <code class="highlighter-rouge">S3FullAccess</code>. Then follw next to finally create the user. I click on <strong>Download.csv</strong> button to save the login credentials for  newly created user <code class="highlighter-rouge">DevOpUser</code>. Also take note of the login url:
 <code class="highlighter-rouge">https://xxxxxx.signin.aws.amazon.com/console</code> (xxxxxx denotes string I removed for privacy).
-<img src="/assets/images/2017/17_12_16/iam-add-user-done.png" alt="IAM Add User" class="leftimg" /></p>
+<img src="assets/images/2017/17_12_16/iam-add-user-done.png" alt="IAM Add User" class="leftimg" /></p>
 
 <p>To keep things organized on my own local machine (a MacBook), I created a folder named <code class="highlighter-rouge">DevOps</code> under my home directory. The whole patch should be <code class="highlighter-rouge">/Users/&lt;username&gt;/DevOps</code>. I copy the credential file downloaded in the last step into this directory.</p>
 
@@ -445,7 +462,7 @@ If you have multi-factor authentication (MFA) enabled, a second screen will be a
 https://Root_Account_ID.signin.aws.amazon.com/console/
 </pre>
 <p>Where <code class="highlighter-rouge">Root_Accound_ID</code> is the either the account number or alias of the root account. Visiting the login link, and after providing the user name and password for <code class="highlighter-rouge">DevOpUser</code> I found this dashboard.
-<img src="/assets/images/2017/17_12_16/iam-user-dashboard.png" alt="User Dashboard" class="leftimg" />
+<img src="assets/images/2017/17_12_16/iam-user-dashboard.png" alt="User Dashboard" class="leftimg" />
 This dashboard allows creating and managing AWS services. In addition to this dashboard, AWS allows creating and managing service resouces via programmatic access. In the next post we’ll see how to create EC2 instances
 using AWS CLI (command line  interface).</p>
 
@@ -455,12 +472,12 @@ using AWS CLI (command line  interface).</p>
 
 	<item>
 	  <title>Barebone AVR Programming - LED Blinker</title>
-	  <link>//Barebone-AVR-Programming-LED-Blinker</link>
+	  <link>/blog//Barebone-AVR-Programming-LED-Blinker</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-08-09T16:18:00-04:00</pubDate>
-	  <guid>//Barebone-AVR-Programming-LED-Blinker</guid>
+	  <guid>/blog//Barebone-AVR-Programming-LED-Blinker</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/2017_08_09_AVR_board.png" alt="AVR Board" class="leftimg" />
+	     <p><img src="assets/images/2017/2017_08_09_AVR_board.png" alt="AVR Board" class="leftimg" />
 Arduino is fun and easy, and it gives the best introducton to AVR processors. However, if you want to build something useful, you’ll soon hit the wall. Arduinio has a huge collection of shields, and supporting libraries for them, but developing a well-designed system is difficult when it comes to debugging. This is due to the fact that Arduino IDE hides most of the intricacies of AVR MCU. If you are used to debug program using breakpoints, stepping and tracing through lines of code, the Arduino IDE is no help. The AVR Studio development environment from Atmel is the saviour here. However, it can’t connect to an Arduino board through the USB port. Fortunately, most Arduino boards have a special header called ICE (in-circuit-emulator), which is actually an SPI (serial peripheral interface) connector. A special hardware tool, for example AVR ISP MK II is needed to connect. There are other alternatives too.
 <!--more--></p>
 
@@ -469,7 +486,7 @@ Arduino is fun and easy, and it gives the best introducton to AVR processors. Ho
 
 <h3 id="programmer-device">Programmer device</h3>
 <p>You might know that the Arduino IDE uploads program (compiled sketches) to an Ardiuno board using serial port (emulated over the USB). Under the hood there is also a small program, already put into the flash memory of the board during manufacturing, handles the receiving of program code from Arduino IDE and writes onto the flash memory. That piece of code is often called Arduino bootloader (not in tradional meaning of booting off course). The actuall uploading of program is handled by a software tool called <code class="highlighter-rouge">avrdude</code>. It is possible to use <code class="highlighter-rouge">avrdude</code> to manually upload program as long as the <code class="highlighter-rouge">MCU</code> has the bootlaoder installed. For the dev-board I am using, there is no bootloader, so we need either a JTAG or ICE hardware tool. Such tools don’t need any helper other than the MCU itself. For the porpose of this post, I used a JTAG programmer tool. The JTAG programmer/debugger I used is bought from <a href="https://www.aliexpress.com/item/Free-shipping-AVR-USB-Emulator-debugger-programmer-JTAG-ICE-for-Atmel/623898152.html">Aliexpress</a>. 
-<img src="/assets/images/2017/2017_08_09_JTAG_programmer.png" alt="JTAG debugger programmer" /></p>
+<img src="assets/images/2017/2017_08_09_JTAG_programmer.png" alt="JTAG debugger programmer" /></p>
 
 <h3 id="programming-setup">Programming setup</h3>
 <p>I’ll write a simple test program in C language to check the dev-board. The best way of doing this (for programmers with deskop programming background) is to use the IDE provided by Atmel. For this post I used AVR Studio version 4.18. Though the latest version is 7, for beginners to keep things under control version 4 is just adequate.</p>
@@ -522,7 +539,7 @@ Following is the code I typed in into TestBoard.c file.</p>
 <p>The C program code first defines the processor clock frequncy via <code class="highlighter-rouge">F_CPU</code>. This is required for the delay functions used in the program. The program first initializes Port A as all output, and sends zero to the port A. This turns the LEDs off (if they were ON before). Then we enter a loop where we first write 1 to first LED and 0 to second LED. After a second delay, we write 0 to first LED and 1 to the second LED. Then again a second of delay. This gives an impression of alternate flushing LEDs.</p>
 
 <h3 id="output">Output</h3>
-<p>A short clip showing the LEDs <a href="/assets/images/2017/2017_08_09_LED_Blinking.3gp">blinking</a>.</p>
+<p>A short clip showing the LEDs <a href="assets/images/2017/2017_08_09_LED_Blinking.3gp">blinking</a>.</p>
 
 <h3 id="links-to-software-and-hardware">Links to software and hardware</h3>
 
@@ -537,12 +554,12 @@ Following is the code I typed in into TestBoard.c file.</p>
 
 	<item>
 	  <title>Serial Communications- How to</title>
-	  <link>//serial-communication-how-to</link>
+	  <link>/blog//serial-communication-how-to</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-07-08T09:18:00-04:00</pubDate>
-	  <guid>//serial-communication-how-to</guid>
+	  <guid>/blog//serial-communication-how-to</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/2017_07_08_RS232.png" alt="RS232" class="leftimg" /> Digital systems need to communicate, even devices within a single system need to communicate with each other. In hardware, this means exachanges of digital signals between two parties. Since data are represented as binary numbers in a digital system, transferring of a binary number can happen in two manners: all the bits in one go (in parallel) or one bit at a time (in serial). This gives rise to design of two types of communication system: parallel and serial. The first thing to note is parallel communication needs more wires but supposedly transfer data in relatively faster manner. In contrast, serial communication can work with fewer wires, but would take longer to transfer the same amount of data. From this, it might look that parallel communication is ‘better’ than serial one, but in reality this is hardly the case.</p>
+	     <p><img src="assets/images/2017/2017_07_08_RS232.png" alt="RS232" class="leftimg" /> Digital systems need to communicate, even devices within a single system need to communicate with each other. In hardware, this means exachanges of digital signals between two parties. Since data are represented as binary numbers in a digital system, transferring of a binary number can happen in two manners: all the bits in one go (in parallel) or one bit at a time (in serial). This gives rise to design of two types of communication system: parallel and serial. The first thing to note is parallel communication needs more wires but supposedly transfer data in relatively faster manner. In contrast, serial communication can work with fewer wires, but would take longer to transfer the same amount of data. From this, it might look that parallel communication is ‘better’ than serial one, but in reality this is hardly the case.</p>
 
 <!--more-->
 
@@ -553,7 +570,7 @@ Following is the code I typed in into TestBoard.c file.</p>
 <p>We know data are represented in Binary in digital systems, and often a bianry 1 means HIGH voltage (3.3V or 5V) and 0 means LOW voltage (0V). However, it is not uncommon to use a <em>negative voltgate to indicate 1</em>. In addition,  when we send these data over a communication line, there is one more thing: the duration of each bit. The receiver must know how long a bit lasts. Bits are sent one after another without any gap in between, so the receiver must also know when it is to start, when it should stop.</p>
 
 <p>In one particluar instance (RS232- see later) of serial communication, few bits of Binary data are sent as a frame. A frame is a single unit, the receive either receives it fully as good or discards it. The start of frame is indicated by a LOW pulse, followed by the data bits. A parity bit is then added for error checking, followed by one or two stop bits (HIGH) indicating the end of frame. The duration of each data bit, (inversion of which called baud rate), number of data bits, type of parity and number of stop bits- these are all configurable parameters. The hardwire chip (often called UART chip)  expects these parameters before a transmission could begin. UART chips are dumb in the sense that they do not have the capability to negotiate the parameters with other party, it depends on the programmer to set the parameters.
-<img src="/assets/images/2017/2017_07_08_linecoding.png" alt="RS232 Line coding" /></p>
+<img src="assets/images/2017/2017_07_08_linecoding.png" alt="RS232 Line coding" /></p>
 
 <p>This little picture needs some explanation. The start bit is ALWAYS low, it designates the start of the frame. So as the UART on the receiving end while monitoring its RX line, can start to detect data bits the moment RX goes LOW. The next few pulses can be HIGH or LOW or a mixture, depedning on exactly what the data bits are. This is the greay area in the picture. To help check with error detection the sender party may add an extra parity bit. It could be either LOW or HIGH depending on the party type in use, or even omitted if no parity is used. This decision is made by the developer, when configuring the UARTs. Finally the stop bit(s) are always HIGH, the red area in the picure. The duration can be double of the start bit if two stop bits are required.</p>
 
@@ -584,12 +601,12 @@ Following is the code I typed in into TestBoard.c file.</p>
 
 	<item>
 	  <title>Basics of block storage devices</title>
-	  <link>//basics-of-block-storage-device</link>
+	  <link>/blog//basics-of-block-storage-device</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-06-23T02:18:00-04:00</pubDate>
-	  <guid>//basics-of-block-storage-device</guid>
+	  <guid>/blog//basics-of-block-storage-device</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/2017_06_hard_disk.png" alt="Hard disk" class="leftimg" /> Today’s mass storage devices include magnetic hard disk, solid state drive, and often flash drive. Though technologically quite different, all these storage classes have one thing in common: they are accessed in a bigger chunk of data unit, not by a byte. This unit of access is called block (sometimes also called page). The internal technology, organizational structure etc could be whatever but the storage device’s adapter IDE/SATA/PATA/SCSI exposes the storage in a uniform manner to the operating system.</p>
+	     <p><img src="assets/images/2017/2017_06_hard_disk.png" alt="Hard disk" class="leftimg" /> Today’s mass storage devices include magnetic hard disk, solid state drive, and often flash drive. Though technologically quite different, all these storage classes have one thing in common: they are accessed in a bigger chunk of data unit, not by a byte. This unit of access is called block (sometimes also called page). The internal technology, organizational structure etc could be whatever but the storage device’s adapter IDE/SATA/PATA/SCSI exposes the storage in a uniform manner to the operating system.</p>
 
 <!--more-->
 
@@ -609,7 +626,7 @@ Following is the code I typed in into TestBoard.c file.</p>
 <p>A physical disk drive can be logically divided into more than one unit and accessed as an independent storage, even by different operating system. There are mainly two schemes on PCs to do that: the legacy MBR (master boot record), and newer GPT (GUID Partition Table). Apple has its own scheme.</p>
 
 <h4 id="master-boot-record-mbr">Master Boot Record (MBR)</h4>
-<p>Ignoring the wording “boot record”, lets pretend “MBR” is a scheme to have multiple partitions in a single physical disk drive. The information about the partions (and more) are stored in the first (LBA=0) Block (also a sector for hard disk) of a drive. An “MBR” partitioning scheme can have a maximum of 4 partitions (all 4 primary or 3 primary and 1 extended which in turn can have more <code class="highlighter-rouge">logical partitions</code> within it).  The first primary partion, called <code class="highlighter-rouge">system partition</code> stores opeating system boot files. A layout of a disk with “MBR” scheme is shown below: <img src="/assets/images/2017/2017_06_23_ms_mbr.gif" alt="MBR Scheme" title="MBR scheme" />
+<p>Ignoring the wording “boot record”, lets pretend “MBR” is a scheme to have multiple partitions in a single physical disk drive. The information about the partions (and more) are stored in the first (LBA=0) Block (also a sector for hard disk) of a drive. An “MBR” partitioning scheme can have a maximum of 4 partitions (all 4 primary or 3 primary and 1 extended which in turn can have more <code class="highlighter-rouge">logical partitions</code> within it).  The first primary partion, called <code class="highlighter-rouge">system partition</code> stores opeating system boot files. A layout of a disk with “MBR” scheme is shown below: <img src="assets/images/2017/2017_06_23_ms_mbr.gif" alt="MBR Scheme" title="MBR scheme" />
 The first 440 bytes in the MBR that reads Master Boot Code in the picture is actually executable code. When a PC powers up, the BIOS, as part of the booting proceess, reads those codes and execute them.</p>
 
 <p>Structure of different versions of “MBR” can be found in <a href="https://en.wikipedia.org/wiki/Master_boot_record"> Wikipedia MBR</a> enry.</p>
@@ -618,7 +635,7 @@ The first 440 bytes in the MBR that reads Master Boot Code in the picture is act
 <p>More than one primary partions can have a bootable operating system. The first sector on a partion is boot sector (if it has boot record). Similar to master boot code, boot sector can have executable code that the BIOS or a boot loader loads and executes. The boot sector is only valid for a partion, that is marked as <code class="highlighter-rouge">bootable</code> with a special signature.</p>
 
 <h4 id="guid-partition-table-gpt">GUID Partition Table (GPT)</h4>
-<p>Among the few limitations of “MBR” scheme, the partition table entries indicate the begining/ending of a partition as 32-bit LBA. This imposes a limitation of maximum 2TB disk capacity. GPT removes that restrictions, uses 64 bits for LBA, and supports upto 128 partitions. Though originally developed as part of EFI, GPT scheme however leaves the legacy LBA=0 <code class="highlighter-rouge">Protective MBR</code> untouched. An example of a GPT scheme is shown below: <img src="/assets/images/2017/2017_06_23_gpt.png" /></p>
+<p>Among the few limitations of “MBR” scheme, the partition table entries indicate the begining/ending of a partition as 32-bit LBA. This imposes a limitation of maximum 2TB disk capacity. GPT removes that restrictions, uses 64 bits for LBA, and supports upto 128 partitions. Though originally developed as part of EFI, GPT scheme however leaves the legacy LBA=0 <code class="highlighter-rouge">Protective MBR</code> untouched. An example of a GPT scheme is shown below: <img src="assets/images/2017/2017_06_23_gpt.png" /></p>
 
 <h4 id="credits">Credits</h4>
 <ul>
@@ -632,12 +649,12 @@ The first 440 bytes in the MBR that reads Master Boot Code in the picture is act
 
 	<item>
 	  <title>Inside ATMega AVR microcontroller</title>
-	  <link>//Inside-ATmega-AVR</link>
+	  <link>/blog//Inside-ATmega-AVR</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-06-14T08:18:00-04:00</pubDate>
-	  <guid>//Inside-ATmega-AVR</guid>
+	  <guid>/blog//Inside-ATmega-AVR</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
+	     <p><img src="assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
 
 <!--more-->
 
@@ -655,7 +672,7 @@ The first 440 bytes in the MBR that reads Master Boot Code in the picture is act
   <li>CPU core (ALU, Program counter, general purpose registers etc)</li>
 </ul>
 
-<p><img src="/assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+<p><img src="assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
 
 <p>AVR is based on modidfied Harvard architecture, so it is expected the program and data memory space tos be seperate. In addition to that, AVR allows readonly access to any data residing in the program memory, but no writes are allowed by the program itself. In addition to the memories for data and programs, AVR also has few bits of EEPROM for storing CPU configuration parameters (we’ll see later). When compared to a CPU like Intel 8080 or Zilog Z80, the ATmega has lots of other functionalities buil-it, to be justly called a microcontroller. Lets talk them in detail:</p>
 
@@ -698,12 +715,12 @@ The first 440 bytes in the MBR that reads Master Boot Code in the picture is act
 
 	<item>
 	  <title>Modern microcontroller: AVR series</title>
-	  <link>//modern-microcontroller-avr-group</link>
+	  <link>/blog//modern-microcontroller-avr-group</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-06-13T02:18:00-04:00</pubDate>
-	  <guid>//modern-microcontroller-avr-group</guid>
+	  <guid>/blog//modern-microcontroller-avr-group</guid>
 	  <description><![CDATA[
-	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="/assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
+	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
 
 <!--more-->
 
@@ -910,19 +927,19 @@ The first 440 bytes in the MBR that reads Master Boot Code in the picture is act
 
 	<item>
 	  <title>Earliest Microprocessor: Zilog Z80</title>
-	  <link>//earlier-microprocessor-Zilog-Z80</link>
+	  <link>/blog//earlier-microprocessor-Zilog-Z80</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-06-12T02:18:00-04:00</pubDate>
-	  <guid>//earlier-microprocessor-Zilog-Z80</guid>
+	  <guid>/blog//earlier-microprocessor-Zilog-Z80</guid>
 	  <description><![CDATA[
-	     <p>The CPU design team at Intel in the 70’s was led by <a href="https://en.wikipedia.org/wiki/Federico_Faggin">Federico Faggin</a>. After resigning from Intel Federico formed the start-up company Zilog, for design, development and marketing of microprocessor. <img src="/assets/images/2017/17_06_12_Zilog_Z80.jpg" alt="Zilog Z80" class="rightimg" /> Zilog Z80 was their first product to hit the market, aimed for embedded applications. Its direct competitor was Intel 8080, and in fact Zilog always highligheted in commercials about its superiority over 8080. Compared to Intel 8080 which required +12V, -5V and +5V, Z80 needed only one +5V supply, had simple clock, and supported more registers, instructions, addressing modes, and even non-maskable interrupts.   Z80 was a gigantic success that helped the company grew from just elevel to a thousand employees in just two years. Many other semiconductor companies around the world copied the design of Z80 and sold their chips. Famaous Atari computuers, the first one to have color display were built on Zilog Z80.</p>
+	     <p>The CPU design team at Intel in the 70’s was led by <a href="https://en.wikipedia.org/wiki/Federico_Faggin">Federico Faggin</a>. After resigning from Intel Federico formed the start-up company Zilog, for design, development and marketing of microprocessor. <img src="assets/images/2017/17_06_12_Zilog_Z80.jpg" alt="Zilog Z80" class="rightimg" /> Zilog Z80 was their first product to hit the market, aimed for embedded applications. Its direct competitor was Intel 8080, and in fact Zilog always highligheted in commercials about its superiority over 8080. Compared to Intel 8080 which required +12V, -5V and +5V, Z80 needed only one +5V supply, had simple clock, and supported more registers, instructions, addressing modes, and even non-maskable interrupts.   Z80 was a gigantic success that helped the company grew from just elevel to a thousand employees in just two years. Many other semiconductor companies around the world copied the design of Z80 and sold their chips. Famaous Atari computuers, the first one to have color display were built on Zilog Z80.</p>
 
 <!--more-->
 
 <h2 id="zilog-z80">Zilog Z80</h2>
 <p>Looking at the internal block diagram, Zilog Z80 has similar architecture as compared to Intel 8080, same 8-bit data bus and registers, and 16-bit address bus. What is surprising is the inclusion of two sets of general purpose registers. Namely, the registers <code class="highlighter-rouge">W, Z, B, C, D, E, H, L</code> can used in pairs to act like 16-bit as with 8080, but their contents can be saved by copying to a whole set of mirrored registers named <code class="highlighter-rouge">W', Z', B', C', D', E', H', L'</code>- and this could be done using just one EXX instruction. The accumulator <code class="highlighter-rouge">A</code> has also a friend <code class="highlighter-rouge">A'</code> also do the flags set <code class="highlighter-rouge">F</code> as <code class="highlighter-rouge">F'</code>. These primed registers could not be loaded directly, only could have swapped values with their counterparts. The special purpose registers are similar, bearing similar names too: PC (program counter), SP (stack pointer), IX and IY (both index registers). This feature of having two sets of registers make programming much easier when writing sub-routine or interrupt service.</p>
 
-<p><img src="/assets/images/2017/17_06_12_Zilog_Z80_arch.png" alt="Zilog 80" title="Zilog Z80 CPU architecture." /></p>
+<p><img src="assets/images/2017/17_06_12_Zilog_Z80_arch.png" alt="Zilog 80" title="Zilog Z80 CPU architecture." /></p>
 
 <p>Zilog Z80 supported maximum of 64KB memory, and additional 256 I/O ports each. Dymanic memories could be used without specilized refresh circuit as the CPU itself provides one.</p>
 

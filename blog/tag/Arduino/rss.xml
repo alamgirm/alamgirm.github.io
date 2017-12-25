@@ -3,7 +3,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>https://alamgirm.github.io/blog/</title>
+      <title>https://alamgirm.github.io/blog</title>
    
    <link>https://alamgirm.github.io</link>
    <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
@@ -13,12 +13,12 @@
    
 	<item>
 	  <title>Inside ATMega AVR microcontroller</title>
-	  <link>//Inside-ATmega-AVR</link>
+	  <link>/blog//Inside-ATmega-AVR</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-06-14T08:18:00-04:00</pubDate>
-	  <guid>//Inside-ATmega-AVR</guid>
+	  <guid>/blog//Inside-ATmega-AVR</guid>
 	  <description><![CDATA[
-	     <p><img src="/assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
+	     <p><img src="assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
 
 <!--more-->
 
@@ -36,7 +36,7 @@
   <li>CPU core (ALU, Program counter, general purpose registers etc)</li>
 </ul>
 
-<p><img src="/assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+<p><img src="assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
 
 <p>AVR is based on modidfied Harvard architecture, so it is expected the program and data memory space tos be seperate. In addition to that, AVR allows readonly access to any data residing in the program memory, but no writes are allowed by the program itself. In addition to the memories for data and programs, AVR also has few bits of EEPROM for storing CPU configuration parameters (we’ll see later). When compared to a CPU like Intel 8080 or Zilog Z80, the ATmega has lots of other functionalities buil-it, to be justly called a microcontroller. Lets talk them in detail:</p>
 
@@ -79,12 +79,12 @@
 
 	<item>
 	  <title>Modern microcontroller: AVR series</title>
-	  <link>//modern-microcontroller-avr-group</link>
+	  <link>/blog//modern-microcontroller-avr-group</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-06-13T02:18:00-04:00</pubDate>
-	  <guid>//modern-microcontroller-avr-group</guid>
+	  <guid>/blog//modern-microcontroller-avr-group</guid>
 	  <description><![CDATA[
-	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="/assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
+	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
 
 <!--more-->
 

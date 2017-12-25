@@ -3,7 +3,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>https://alamgirm.github.io/blog/</title>
+      <title>https://alamgirm.github.io/blog</title>
    
    <link>https://alamgirm.github.io</link>
    <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
@@ -13,12 +13,12 @@
    
 	<item>
 	  <title>Designing a simple Assembler</title>
-	  <link>//design-a-simple-assembler</link>
+	  <link>/blog//design-a-simple-assembler</link>
 	  <author>alamgir</author>
 	  <pubDate>2017-06-04T07:18:00-04:00</pubDate>
-	  <guid>//design-a-simple-assembler</guid>
+	  <guid>/blog//design-a-simple-assembler</guid>
 	  <description><![CDATA[
-	     <p>Following on the design of a simple microprocessor in the <a href="/design-a-simple-microprocessor.html ">last post</a>, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.</p>
+	     <p>Following on the design of a simple microprocessor in the <a href="design-a-simple-microprocessor.html ">last post</a>, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.</p>
 
 <!--more-->
 
@@ -29,7 +29,7 @@
 <pre>NOP, STOP, DUMP, LOAD, STOR, XCHG, JMP, JMPE, ADD, 
 SUB, INC, DEC, AND, OR, NOT, XOR, CMP, COMP</pre>
 
-<p>And if you look at the opcodes for these instructions <a href="/design-a-simple-microprocessor.html#opcode_mnemonic">mnemonics</a>, the corresponding machine codes should be (in hexadecimal): <br /></p>
+<p>And if you look at the opcodes for these instructions <a href="design-a-simple-microprocessor.html#opcode_mnemonic">mnemonics</a>, the corresponding machine codes should be (in hexadecimal): <br /></p>
 
 <pre>
 0, 1, 2, 3, 4, 5, 6, 7, 8, 
