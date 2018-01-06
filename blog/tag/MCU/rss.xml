@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>https://alamgirm.github.io/blog</title>
+   
+   <link>https://alamgirm.github.io</link>
+   <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
+   <language>en_GB</language>
+   <managingEditor> alamgir</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Inside ATMega AVR microcontroller</title>
+	  <link>/blog//Inside-ATmega-AVR</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-14T08:18:00-04:00</pubDate>
+	  <guid>/blog//Inside-ATmega-AVR</guid>
+	  <description><![CDATA[
+	     <p><img src="/blog/assets/images/2017/17_06_14_ATmega328P.jpg" alt="Atmel ATmega328P" class="rightimg" />Atmel offers a wide variety of AVR MCU available in different series or families. MCU from these families differ in capabilities and funcionalities and sometimes in instructions available and architecture. However,  the design of AVR itself followes some common philosophy that could help us understand the internal architecture of such an MCU. In this post we talk about Atmel ATmega MCU which are available in different parts numbers, and with differnt amount of program memory.</p>
+
+<!--more-->
+
+<h2 id="internal-architecture-of-atmega-family">Internal Architecture of ATmega family</h2>
+<p>Looking at the block diagram of internal architecture of ATmega family one would notice that the MPU has:</p>
+
+<ul>
+  <li>Serial I/O communication for dowanloading of program</li>
+  <li>Flash memory for storing program to be executed</li>
+  <li>EEPROM (for storing CPU configuration bits)</li>
+  <li>Peripheral I/O</li>
+  <li>Analog/Digital converter</li>
+  <li>Timers/counters</li>
+  <li>Data memory</li>
+  <li>CPU core (ALU, Program counter, general purpose registers etc)</li>
+</ul>
+
+<p><img src="/blog/assets/images/2017/17_06_14_Atmel_ATmega_arch.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+
+<p>AVR is based on modidfied Harvard architecture, so it is expected the program and data memory space tos be seperate. In addition to that, AVR allows readonly access to any data residing in the program memory, but no writes are allowed by the program itself. In addition to the memories for data and programs, AVR also has few bits of EEPROM for storing CPU configuration parameters (we’ll see later). When compared to a CPU like Intel 8080 or Zilog Z80, the ATmega has lots of other functionalities buil-it, to be justly called a microcontroller. Lets talk them in detail:</p>
+
+<h4 id="serial-io">Serial I/O</h4>
+<p>While Intel 8080 or Zilog Z80 needs a UART chip to communicate with the outside world via serial connection, ATmega has this functionality built right into the chip making serial communication trivial. Some chips offer USB commucations too.</p>
+
+<h4 id="memories">Memories</h4>
+<p>ATmega has flash memory for storing programs, and EEPROM for storing configuration parameters. Contents of both these memories are preserved when the power is off. Both these can be written from outside with appropriate tool. For storing temporary data there is data memory, which is in fact static RAM. The exact amount of thse memories vary depending on the model number.</p>
+
+<h4 id="cpu">CPU</h4>
+<p>The CPU core in AVR like most other CPU has ALU, Program Counter, and a host of general purspose registers. ATmega has 32 general purpose registers, each being 8-bit wide. The number and usage can slightly vary depending on the model. Surprisingly enough, these registers are mapped to first 32 bytes of the data memory. This meeans a program whishing to access the registers can simply read/wirte data to the specific memory locations. Last six of the 32 regisers are used as index registers, each in a 16-bit wide fashion. PC (program counter), a 14-bit special purpose register, points to the next executable instruction in <i>program memory</i>. When the MCU is first powered up, or reset, the PC is loaded to with value <code class="highlighter-rouge">0x0000</code> (this could be changed though). The SP (stack pointer) consists of two registers (taken from the total 32) and points to a memory location in <i>data memory</i>. In addition, AVR has few status regisers to reflect various operational status.</p>
+
+<h4 id="peripheral-io">Peripheral I/O</h4>
+<p>ATmega supports digital input/output of data with outside world, most likely from the same board. Some of these I/O can be analog, PWM (pulse width modulated) signals, others could be simple TTL (transistor transisto logic). Specilized communicatoin such as I2C, SPI, CAN bus can also be supported with proper support circuit and programs. Often there is an analog comparator that could be used for comparing analog signals. Digital data from/to outside world are stored in memory locations starting right after the 32 registers map. Though these locations are called I/O registers, they are not CPU registers, just ordinary memory locations mapped as an I/O port. Depending on model there could be 64 or more I/O registers.</p>
+
+<h4 id="analogdigital-converter">Analog/Digital Converter</h4>
+<p>ATmega has in-built A/D (Analog to Digital) converter. Some models have D/A (Digital to Analof) converter too. This allows interfacing with analog world without needing extranal A/D chips.</p>
+
+<h4 id="timerscounters">Timers/Counters</h4>
+<p>ATmega has on chip timers/counters, and thre are two kinds. The first kind is a 8-bit synchronous where the clock signal is derived from the CPU clock. The second kinds allows connecting an external clock circtuit to trigger the timer/counter and works independent of the CPU clock. Each of the timer/counter available can operate in a multiple of modes depending on application needs.
+<img src="/blog/assets/images/2017/17_06_14_Atmel_ATmega_arch2.png" alt="Atmel ATmega" title="Atmel ATmega MPU." /></p>
+
+<h5 id="other-features">Other Features</h5>
+
+<p>Depending on the model, certain models can have special sensors built-in, can have an LCD driver, LIN bus support etc.</p>
+
+<h4 id="pin-configurations">Pin configurations</h4>
+<p>An ATmega chip has many more functions than it has physical pins to support them for. To determine which functionalities are avalilable at which pins, ATmega has something called control register. Changing a suitable bit in the register can make a pin digital or analog, input or output, attach an intenal pull-up resistance etc. The timers/counters, communication interface, A/D etc can be configured by adjusting bits in the configuration control registers. The expectation with such design is that the user would configure the chip for his application need and the chip would just operate the way it is configured.</p>
+
+<h4 id="watchdog-timer">Watchdog timer</h4>
+<p>Though not shown in the picture, ATmega chips have a special timer, still programmable, called watchdog timer. This allows user programs or say an operating system to watch the MCU if it is stuck in a program execution. If that happens, a separate circuit can reset the MCU witout human intervention.</p>
+
+<h4 id="credits">Credits</h4>
+<ul>
+  <li>The pictures in this article are courtesy of <a href="http://shop.oreilly.com/product/0636920037880.do">Arduino- A technical reference</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Modern microcontroller: AVR series</title>
+	  <link>/blog//modern-microcontroller-avr-group</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-13T02:18:00-04:00</pubDate>
+	  <guid>/blog//modern-microcontroller-avr-group</guid>
+	  <description><![CDATA[
+	     <p>The story of AVR familiies of microcontrollers (MCU), that power popular Arduino development boards began with two Norwegian students who designed a microcontroller as academic project. It was based on modified Harvard achitecture and RISC instructions set. The design later bought up by Atmel, and the two original designers continued to work on and improve. <img src="/blog/assets/images/2017/17_06_13_Atmel_AVR_logo.png" alt="AVR logo" class="rightimg" /> Atmel, understandly targetting the market of Intel 8051 releases the first AVR AT90S8515, a 8-bit MCU with same pin out as Intel 8051. Though originally 8-bit today AVR has 32-bit MCU, and offers multiple families of MCU with varied degree of capabilities and functionalities. There are however few common features: for example use of on-chip flash memory for program storage, EEPROM bits for CPU configuration flags etc. Within each family there are multiple MCUs available.</p>
+
+<!--more-->
+
+<h2 id="avr-families">AVR Families</h2>
+<p>AVR MCUs are generally put into any of the following falimies:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>TinyAVR</th>
+      <th>MegaAVR</th>
+      <th>XMEGA</th>
+      <th>AVR32</th>
+      <th>App Specific</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Data memory</td>
+      <td>uptp 1024</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Word size</td>
+      <td>8-bit</td>
+      <td>8-bit</td>
+      <td>8-bit</td>
+      <td>32-bit</td>
+      <td>depends</td>
+    </tr>
+    <tr>
+      <td>Program memory</td>
+      <td>0.5 to 16KB</td>
+      <td>4-256KB</td>
+      <td>16-384KB</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Package</td>
+      <td>6-32 pin</td>
+      <td>28-100pin</td>
+      <td>variable</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Peripheral</td>
+      <td>limited</td>
+      <td>extened</td>
+      <td>extended</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Instrunctions</td>
+      <td>Some limit</td>
+      <td>Extened</td>
+      <td>Extened</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Extra feature</td>
+      <td>No</td>
+      <td>Option</td>
+      <td>Option</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="specific-models">Specific Models</h2>
+<p>Below are some specifuc models that are used often. The table is not complete, and accuracy is not guranteed.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Flash memory</th>
+      <th>EEPROM</th>
+      <th>SRAM</th>
+      <th>Chip pins</th>
+      <th>I/O pins</th>
+      <th>Clock</th>
+      <th>Feature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ATtiny13</td>
+      <td>1K</td>
+      <td>64</td>
+      <td>160</td>
+      <td>8</td>
+      <td>6</td>
+      <td>20MHz</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATtiny85</td>
+      <td>8K</td>
+      <td>512</td>
+      <td>512</td>
+      <td>8</td>
+      <td>6</td>
+      <td>20MHz</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATMega32</td>
+      <td>32K</td>
+      <td>1K</td>
+      <td>2K</td>
+      <td>40</td>
+      <td>32</td>
+      <td>16MHz</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATmega32U4</td>
+      <td>32K</td>
+      <td> </td>
+      <td> </td>
+      <td>44</td>
+      <td>26</td>
+      <td>16MHz</td>
+      <td>USB</td>
+    </tr>
+    <tr>
+      <td>ATmega128</td>
+      <td>128K</td>
+      <td> </td>
+      <td> </td>
+      <td>64</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATmega168</td>
+      <td>16K</td>
+      <td>512</td>
+      <td>1K</td>
+      <td>28/32</td>
+      <td>23</td>
+      <td>20MHz</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATmega328</td>
+      <td>32K</td>
+      <td>1K</td>
+      <td>2K</td>
+      <td>28/32</td>
+      <td>23</td>
+      <td>20MHz</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATmega649</td>
+      <td>64K</td>
+      <td> </td>
+      <td> </td>
+      <td>64</td>
+      <td> </td>
+      <td> </td>
+      <td>LSB</td>
+    </tr>
+    <tr>
+      <td>ATmega1280</td>
+      <td>128K</td>
+      <td> </td>
+      <td> </td>
+      <td>100</td>
+      <td>86</td>
+      <td>16MHz</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATmega2560</td>
+      <td>256K</td>
+      <td> </td>
+      <td> </td>
+      <td>100</td>
+      <td>86</td>
+      <td>16MHz</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="more-details">More details</h3>
+
+<p>More details about the features of various families can be found in <a href="http://www.atmel.com/products/microcontrollers/avr/default.aspx">Atmel’s web</a> site. Considering both the price and features, ATMega family is probably the best choice among IoT and hooby users. Choices and details about ATMega family chips are available <a href="http://www.atmel.com/products/microcontrollers/avr/megaavr.aspx"> here.</a></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Understanding Program Flow and Interrupts</title>
+	  <link>/blog//understanding-program-flow-and-interrupts</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-05T13:18:00-04:00</pubDate>
+	  <guid>/blog//understanding-program-flow-and-interrupts</guid>
+	  <description><![CDATA[
+	     <p>Once we understand how a microprocessor works, and how programs are written and get executed by a microprocessor, it is time to dig deeper and learn in detail on how the control in a program flows between instruction to instruction. This posts talks about the flow or path of execution in a program, and how and when the microprocessor could break that flow. In particular, we’ll learn about interrupts- a very useful mechanism to allow priority and importance in program execution.</p>
+
+<!--more-->
+
+<h2 id="control-flow">Control Flow</h2>
+<p>Lets begin with an example program in assembly language:</p>
+<pre>
+0  LOAD $8    // load 8 to A, initialize A
+1  XCHG $0    // BX &lt;= AX, move the value of A to B
+2  LOAD $10   // load 10 to A, initialize A
+3  DEC  AX    // R &lt;= AX -1, decrement A
+4  XCHG $3    // AX &lt;= R, move the result back to A
+5  JMPE $7    // if A = B jump to instruction at $7
+6  JMP  $3    // jump back to $3, continue loop
+7  DUMP $2    // dump values
+8  STOP       // stop the processor
+</pre>
+
+<p>The number on the left denotes the physical memory address of each program statement. The program begins with loading $8 to register B (by first loading it into A, then exchanging), then loads $10 to register A.  The next two statements decrease the value of A by 1. After that, we compare the values of registers A and B and if equal, break the loop by jumping out of it to address $7. If the values are not equal, the statement <code class="highlighter-rouge">JMP $3</code> takes us back to the decremnt statement at address $3.</p>
+
+<p>If we have a highlighter to point to the current line (the one being executed by the MPU), then these will be the sequecnce of instructions as executed by the processor:</p>
+<pre>
+	0
+	1		// A now has 8
+	2		// B now has 8 (A also has 8)
+	3		// A now has 10, B has 8
+	4		// A has 10, R has 9, B has 8
+	5		// A has 9, B has 8
+	6		// A has 9, B has 8
+	3		// A has 9, B has 8
+	4		// A has 9, R has 8, B has 8
+	5		// A has 8, B has 8
+	7		// A has 8, B has 8
+	8		// microprocessor halts
+</pre>
+<p>If we notice carefully, the statements at addresses <code class="highlighter-rouge">3,4,5</code> get executed twice. After first round, the processor executes <code class="highlighter-rouge">6</code> then goes back to <code class="highlighter-rouge">3</code>, and on the second round the microprocessor skips the statement at <code class="highlighter-rouge">6</code> and jumps to <code class="highlighter-rouge">7</code>. The flow of control (the statement that is being executed) here is definetely not linear. Well, it is linear unless not broken by a JMP/JMPE instruction.</p>
+
+<h2 id="sub-routine-or-function">Sub-routine or Function</h2>
+<p>Repeating a group of statements is called looping in high-level languages. Another feature almost all high-level languages offer is called sub-routine or function. The idea behind sub-routine/function is to write a small program to perform a certain specific task and then reuse it as many times as possible, without rewriting it. So, for example, we could wirte a few statements to find the bigger number from a pair of given numbers. We could expect that the numbers to be compared be given in register A and B, and the result will be provided in register R. Now lets assume these group of statements (called subroutine/function now) be placed at memory address $12.</p>
+
+<p>Now when writng our main program, and when in need of finding the bigger of two numbers, we would just load the numbers in A and B, and then <em>call</em> the subroutine we just created before. In fact, we’d have to make a JUMP to address $12. And once that is done, we will have to come back right where we left off before making the jump.</p>
+
+<p>Here is a demo example.</p>
+<pre>
+	 0  LOAD $8    // load 8 to A, initialize
+	 1  XCHG $0    // BX &lt;= AX, move the value of A to B
+	 2  LOAD $10   // load 10 to A, initialize A
+	 3  JMP  $2F   // call the subroutine
+	 4  XCHG $3    // call retruns here, move the result R to A
+	 5  DUMP $2    // dump values to show result
+	 6  JUMP $1F   // jump to the end of program
+	...................................................
+	
+	12 SUB BX      // R &lt;= AX - BX
+	13 ------	   // if R has Sign Flag on
+	14 ------	   // B is bigger
+	15 ------	   // otherwise, A is bigger
+	16 JMP $4      // return to caller routine
+	...................................................
+	 			
+	1F  STOP       // stop the processor
+</pre>
+<p>What goes inside the subroutine is ommitted here for simplicity, and it was assumed the subroutine knows the program address $4 (where to return to). And, it was assumed the MPU does not have any special instructions specifically designed to support function call. In practice, real MPUs do have instructions to make function call easier.</p>
+
+<p>Use of subroutine/function is no different to the MPU, it executes the statements in the same manner, as it does the main program. The only benefit is to the programmer, who can better organize the program when writing.</p>
+
+<h2 id="interrupts">Interrupts</h2>
+<p>The simple microprocessor we <a href="/blog/design-a-simple-microprocessor.html ">designed</a> does not support any kind of priority or urgency. For instance, if the microprocessor is busy running a long loop, there is no means for the programmer to stop or cancel the loop without resetting or powering off the MPU. We ccould add a register named NR (iNterrup Register) in the design, and a hardware pin named IntReq (Interrupt Request). The idea is to put an address (of the starting statemnt of a group of instruction or subroutine)  in NR, and make the MPU jump that address whenever the pin IntReq becomes active. Once that subroutne is done, the MPU will come back where it left off before the IntReq pin became active. Making the IntReq pin active is known as interrupt request, and the subroutine that executes in response to this request is called <em>interrup service routine</em> (ISR).</p>
+
+<p>Interrupts are very common in commercial MPU, and in fact most MPU support more than one interrupt. It is also common to extend the interrupt request feature so that more than one request could be handled. For instance, our MPU could set aside 8-bit x 16 memory, where 16 different memory addresses would be stored. Before making an interrupt request, a device first put its identifier (say betweet 0 and F) into a pre-designated register or memory address, and then make IntReq active. The interrupt service will first see the id of requesting device and then based on it, choose the corresponding entry of the 8-bit x 16 memory table. No wonder, such table is known as <em>interrupt vector table</em> since each entry of the table is an address (vector) of the subroutine corresponding to an interrup request.</p>
+
+<p>While interrupts are great, it makes the control flow of program unpredictable. It is not possible beforehand which interrup will go active and when. Some MPUs, also prioritize interrupts meaning some interrupts are more important than others.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Microprocessor, microcontroller and programming</title>
+	  <link>/blog//microprocessor-micro-controller-and-programming</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-04T20:18:00-04:00</pubDate>
+	  <guid>/blog//microprocessor-micro-controller-and-programming</guid>
+	  <description><![CDATA[
+	     <p>A microprocessor, or microprossor unit (MPU) often also known as central processing unit (CPU) is generally a physical semiconductor chip with lots of pins to connect to other chips. But what makes it special is the capability that it can execute certain instructions. Here execution means, when some electrical signals are presented at the inputs of the MPU, is produces some appropriate signals at its output pins. Almost always, a MPU is connected to a memory chip (via two groups of wires known as data bus and address bus plus some more control wires) where the instructions (combinedly known as program) are stored. A MPU will always have a clock that coordinates the transfer of signals between MPU and different chips. Other than memory, some form of input and output devices are also usually connected to an MPU. These are commonly connect to the MPU via some controller chip. Here is an example of all the things mentioned above.
+<img src="/blog/assets/images/2017/17_06_05_image_1.png" alt="BareBone MPU" title="MPU, Memory, Keypad and LCD display." /></p>
+
+<p>Before anyone could write any program these components need to be properly connected with wires and supplied power. Once powerd programs can be written into the memory and exucuted. However, both programs and data will get lost when the power is removed since the memory shown is a volatile type one.
+<!--more--></p>
+
+<p>Building a system this way is harder than it now needs to be. Welcome microcontroller unit (MCU), also called system-on-a-chip (SoC), that combines one or more processing core, both volatile and no-volatile memory, analog/digital converter, timers, counters and heaps of other usefull components- all packaged in a single chip. What left is to connect the chip to outside world via input/output components.</p>
+
+<p>Depending on the manufacturer and product line, MCUs can have numerous capabilities built on to it. Intel 8051, a historically popular MCU has 8-bit processing element, 128-byte of RAM, 4KB of ROM, 4 sets of 8-bit programmable I/O, a serial commmunication port, two 16-bit counter/timer etc.</p>
+
+<h1 id="neumann-vs-harvard-risc-vs-cisc-instruction-set">Neumann vs Harvard, RISC vs CISC: Instruction Set</h1>
+<p>An MPU is designed with certain instrtuctions in mind, and even before that certain architecture in mind. Two architectures are in wide use: Von Neumann and Harvard. On the surface, a Von Numann MPU will access only a single space of memory, both for program instructions and the data that the program uses. In contrast, in a Harvard architecture two spaces of memories are used, program memory and data memory. A program can not modify anything in the program memory. Data are always read/written from/to data memory. There are certain advantages for doing these in expense of added complexity.</p>
+
+<p>Talking about complexity, a MPU can be designed with instructions that try to go the extra mile, or stay as simple as possible. Take for example, multiplying two numbers. An MPU can have an instruction called MUL to do just that, or lack one and expect the programmer to do multiplication using ADD instruction. ADD instruction is trivial for implementation.</p>
+
+<p>This division in philosophy resulted in RISC (reduced instruction set computer) and CISC (complex instruction set computer). RISC processors are fast, since they have simple architecture and limited set of simple instructions, but as we just learned, needs to execute more instructions to get something done. CISC on the other can have more instructions available to get things done easily from programmer’s points of view, but could eventually be slower.</p>
+
+<h1 id="development-board-iot">Development board, IoT</h1>
+<p>An MCU though comes with lots of things in-built still needs power, ways to connect to input/output components and hence needs to be in the form of a development board- a circuit board with the MCU and other relaeted circuitry to provide power, clock, headers for connection, means to load program etc. Luckily there are huge range of development boards avaialble: Arduino, Raspberri Pi, Orange Pi, Banana Pi, BeagleBone, and the list goes on. Apart from the capabilities offered by the MCU used in these boards, some boards have added features, ways to connect more add-on feature (often called shield), and sometimes extra ports to make it easy to connect to say USB, HDMI, WiFi, Ethernet etc.</p>
+
+<h1 id="programming-a-dev-board">Programming a dev-board</h1>
+<p>All MCU have some kind of non-volatile memory to store programs and volatile (RAM) memory for data. But  for putting the program into the memory needs assistance from the MCU. A ROM (EEPROM) is often is there to do that. A small program, called the bootloader whose sole purpose is to help load user programs into the memory, resides in the ROM. The bootloader is however most often replacable via special hardware. Two such hardware are: ICE (in circuit emulator), and JTAG (joint test action group). The MCU in use must support such hardware feature, and the dev-board should also have connector slot available. Other than replacing the bootloader ICE and JTAG device can aid debug programs and do lot more, for example change internal MCU flags that the MCU use for its configurations.</p>
+
+<h3 id="whats-next">What’s Next</h3>
+<ul>
+  <li>Program organization in detail</li>
+  <li>Bootloader in detail</li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Designing a simple Assembler</title>
+	  <link>/blog//design-a-simple-assembler</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-04T07:18:00-04:00</pubDate>
+	  <guid>/blog//design-a-simple-assembler</guid>
+	  <description><![CDATA[
+	     <p>Following on the design of a simple microprocessor in the <a href="/blog/design-a-simple-microprocessor.html ">last post</a>, this post talks about writing a simple assembler for that processor. The main aim of attempting to write an assembler is to learn how the assembly to machine code conversion works.</p>
+
+<!--more-->
+
+<p>When writing the assembler, in addition to the instructions offered by the MPU, we can add extra instructions that would map down to the MPU insturctions during assebmling process. For simplicity of programming, I added two instrucions: CMP (meaning complement, functionally same as NOT), and COMP (compare, functionally same as SUB).</p>
+
+<p>We now have a total of 16+2=18 keywords to handle. The Keywords are: <br /></p>
+
+<pre>NOP, STOP, DUMP, LOAD, STOR, XCHG, JMP, JMPE, ADD, 
+SUB, INC, DEC, AND, OR, NOT, XOR, CMP, COMP</pre>
+
+<p>And if you look at the opcodes for these instructions <a href="/blog/design-a-simple-microprocessor.html#opcode_mnemonic">mnemonics</a>, the corresponding machine codes should be (in hexadecimal): <br /></p>
+
+<pre>
+0, 1, 2, 3, 4, 5, 6, 7, 8, 
+9, A, B, C, D, E, F, E, 9
+</pre>
+
+<h2 id="assembly-process">Assembly process</h2>
+<p>The assembling process is essentially reading the assembly language program, and going line by line to find the equivalent machine code. To find the meaning of a line of assembly code, we need to build a parser that could parse all the assembly instructions we would like the assembler to recognize.</p>
+
+<p>A finite automata (also called state machine) is a perfect tool for modeling the parsing process. Given the 18 keywords that we need to detect, the following is an automata that could do that:</p>
+
+<p><img src="/blog/assets/images/2017/17_06_04_keyword_automata.png" alt="Finite Automata" title="Finite automata for parsing keywords." /></p>
+
+<p>How it works is quite easy to understand. Say we have one line of text from a program written in assesbly language. We begin at the round rectangle block <code class="highlighter-rouge">Begin</code> and read the first character of the input text line. We check if it is either A, C, D, I, J, L, N, O, S or X. If the answer is positive, we move to next character, otherwise, the current characte is possibly a white space or a wrong insttuction. If for example, the first character was A, the second character from the input now has to be either D or N. Otherwise we have an invalid input. We keep on doing this until we end up at a hexagone or detect an error.</p>
+
+<p>All the cicles are intermediary states meaning we have not finished parsing yet. When and if we reach the hexagon, we have successfully identifed or better say parsed an instruction. Consider <code class="highlighter-rouge">Begin</code> as the root of a tree and the hexagons as the leaves. Then following any branch and collecting the label letters will give us only the valid instructions. For instance, from top we have: <br /></p>
+<pre>
+ ADD
+ AND
+ CMP
+ COMP
+ DEC
+ DUMP
+ INC  etc</pre>
+
+<h2 id="additions-to-the-mpu">Additions to the MPU</h2>
+<p>Since the first design of the MPU, there have been few slight modifications, in fact additions, to have better programming capability.  The addtions are: having a register I (Index register) that points to the address in data memory where a data would be written to or read from. Another addition is ADD/SUB/AND/OR/XOR/CMP/NOT can now take register argument. Say, <code class="highlighter-rouge">ADD B</code> is now a valid instruction that adds the value of B to  A and stores the result in R. Another addition is made to XCHG that can now take an argument, and based on it, can move values between registers in more flexible ways. For instance, <code class="highlighter-rouge">XCHG $1</code> will cause the value of A to go to I.</p>
+
+<h3 id="example-program">Example Program</h3>
+<p>Here is an example program that the assembler can read and convert into machine code:</p>
+<pre>
+1  LOAD $0   //load 0 to A
+2  XCHG $1   // move 255 to I register
+3  LOAD $FF
+4  XCHG $0   // move 255 to B
+5  LOAD $0   // load 0 into A
+6  JMPE $    // if A = B = 255 break loop
+7  STOR $55  // store $55 to memory location pointed by I register
+8  INC  AX    // RX &lt;= A+1
+9  XCHG $2   // move back to AX
+10 INC  IX    // R = I+1 
+11 XCHG $3  // i = i+1
+12 JMP  $6
+13 DUMP $2
+14 STOP
+</pre>
+<p><em>Note</em>: Anything after // is comment and is meant for programmer, it is ignored by the assembler. The line numbers at the beginning of each line, is also for ease of reading.</p>
+
+<p>Once the assembler is run on this program, it produces the following output:</p>
+<pre>
+3200
+5201
+32FF
+5200
+3200
+7207
+4255
+A300
+5202
+A303
+5203
+6206
+2202
+1000
+</pre>
+
+<p>These machine codes are ready to be loaded to the MPU for execution.</p>
+
+<h4 id="source-code">Source Code</h4>
+<p>The source code for the simple assembler can be found in <a href="https://github.com/alamgirm/assembler">Github repo</a>.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

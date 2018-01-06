@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Continuous Integration and Continuous Development on AWS : part III - Ansible</title>
+    <meta name="description" content="Alamgir's Blog - Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT." />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/blog/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/blog/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/blog/page2/" />
+
+    <meta property="og:site_name" content="Alamgir's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Alamgir's Blog" />
+    <meta property="og:description" content="Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT." />
+    <meta property="og:url" content="/blog/" />
+    <meta property="og:image" content="/blog/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Alamgir's Blog" />
+    <meta name="twitter:description" content="Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT." />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image:src" content="/blog/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "blog",
+    "publisher": "Alamgir Mohammed",
+    "url": "/blog/",
+    "image": "/blog/assets/images/cover1.jpg",
+    "description": "Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Alamgir's Blog" href="/blog/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/blog/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/blog/about">About</a></li>
+        <li class="nav-emb " role="presentation"><a href="/blog/tag/Data Science">Data Science</a></li>
+        <li class="nav-emb " role="presentation"><a href="/blog/tag/Machine Learning">Machine Learning</a></li>
+        <li class="nav-emb " role="presentation"><a href="/blog/tag/Programming">Programming</a></li>
+        <li class="nav-emb " role="presentation"><a href="/blog/tag/Visualization">Visualization</a></li>
+        <li class="nav-ard " role="presentation"><a href="/blog/tag/Arduino">Arduino</a></li>
+        <li class="nav-rasp " role="presentation"><a href="/blog/tag/Raspberry Pi">Raspberry Pi</a></li>
+        <li class="nav-iot " role="presentation"><a href="/blog/tag/IoT">IoT</a></li>
+	<li class="nav-author " role="presentation"><a href="/blog/author/alamgir">Author</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/blog/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/blog/assets/images/cover/cover7.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/blog/"><img src="/blog/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-test tag-content">
+
+        <header class="post-header">
+            <h1 class="post-title">Continuous Integration and Continuous Development on AWS : part III - Ansible</h1>
+            <section class="post-meta">
+            <!-- <a href='/blog/'>alamgir</a> -->
+            <time class="post-date" datetime="2017-12-16">16 Dec 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/blog/tag/CICD'>Cicd</a>,
+                       
+                
+                    
+                       <a href='/blog/tag/AWS'>Aws</a>,
+                       
+                
+                    
+                       <a href='/blog/tag/Ansible'>Ansible</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <p><img src="/blog/assets/images/2017/17_12_16/cicd-0.png" alt="CICD" class="leftimg" />
+DevOps philosophy has it that an application is better developed, tested and deployed in small pieces, in a continuous manner. This hopefully serves the changing requirements (of the clients or users) in both time and cost effective way. The developers, and operational team also always have something that is proved to be working, something to roll back to in case a change does not end successfully. To practically embrace the philosphy there needs to be an organizational pipeline where the teams (development, QA testing, deployment, monitoring etc) participate. And for better communication among the teams, most if not all teams use same kind of automation tools/platforms. This post is the first in a series of posts that talks about automation tools, employed on Amazon AWS cloud platform.</p>
+
+<!--more-->
+
+<ol>
+  <li>loginto the Ansible Controller instance</li>
+  <li>
+    <p>Update packages and install pip (that will install ansible). For RH epel needs to be installed first</p>
+
+    <pre>
+- Sudo to root: $ sudo su
+- Update the OS:# yum -y update
+- Install wget: # yum -y install wget
+- Download epel repo: # wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+- Install epel repo: # yum -y install epel-release-latest-7.noarch.rpm 
+</pre>
+  </li>
+</ol>
+
+<p>Now the pip installer</p>
+
+<pre>
+   - Install pip: # yum -y install python-pip
+   - Install ansible: # pip install ansible
+   </pre>
+
+<ol>
+  <li>
+    <p>Install git client</p>
+
+    <pre>
+# yum -y install git
+</pre>
+  </li>
+  <li>
+    <p>Copy the private key file <code class="highlighter-rouge">HostForAnsibleKey.pem</code> into the home directory.
+The controller node need this key to access the host.</p>
+  </li>
+  <li>
+    <p>Manually create an inventory of all the resources. Store it as <code class="highlighter-rouge">/etc/ansible/hosts</code></p>
+
+    <pre>
+[test-servers]
+ 10.179.44.7
+</pre>
+  </li>
+</ol>
+
+<p>[ Alternatively I could use the ec2.py script to list]</p>
+
+<ol>
+  <li>Configure ansible. Create a file named <code class="highlighter-rouge">ansible.cfg</code> inside folder <code class="highlighter-rouge">ansible</code>.</li>
+</ol>
+
+<pre>
+[defaults]
+inventory     = /etc/ansible/hosts
+remote_user   = ec2-user
+become        = True
+become_method = sudo
+become_user   = root
+nocows        = 1
+</pre>
+
+<ol>
+  <li>Check and see if ansible can access the host.</li>
+</ol>
+
+<pre>
+ansible -m ping 'test-servers' --private-key ../HostForAnsibleKey.pem
+</pre>
+
+<p>If it works fine, the result should be:</p>
+
+<pre>
+10.179.44.7 | SUCCESS =&gt; {
+    "changed": false, 
+    "ping": "pong"
+}
+</pre>
+
+<h3 id="creating-an-ansible-playbook">Creating an ansible playbook</h3>
+
+<h3 id="creating-helloworld-app">Creating HelloWorld app</h3>
+<ol>
+  <li>inside ansible folder, create a new folder named roles.</li>
+  <li><code class="highlighter-rouge">ansible-galaxy init nodejs</code> creates a new role nodejs
+ We’ll use this role to install nodejs on to the target system</li>
+  <li>Go inside nodejs, then tasks and edit file main.yml</li>
+</ol>
+<pre>
+---
+# tasks file for nodejs
+
+- name: Installing nodejs and npm
+  yum:
+    name: ""
+    enablerepo: epel
+    state: installed
+  with_items:
+    - nodejs
+    - npm
+</pre>
+<p>Whenever ansible runs, it will check the existence of these package, if not found will install.</p>
+
+<ol>
+  <li>Another role is needed to install and run the app. Go back to roles folder, and issue
+<code class="highlighter-rouge">ansible-galaxy init helloworld</code>. After the role creattion go inside, helloworld and then files.</li>
+  <li>This folders contains files that ansible can upload to the target. Lets get 2 files from web (ideally we’d get them from github)</li>
+</ol>
+<pre>
+wget http://bit.ly/2vESNuc -O files/helloworld.js
+</pre>
+<ol>
+  <li>Now go inside the task folder (under helloworld) and edit main.yml file</li>
+</ol>
+<pre>
+- name: Copying the application files
+  copy:
+    src: helloworld.js
+    dest: /home/ec2-user/
+    owner: ec2-user
+    group: ec2-user
+    mode: 0644
+  notify: restart helloworld
+
+- name: Copying the upstart file
+  copy:
+     src: helloworld.conf
+     dest: /etc/init/helloworld.conf
+     owner: root
+     group: root
+     mode: 0644
+
+- name: Starting the HelloWorld nodejs service
+  service:
+      name: helloworld
+      state: started
+</pre>
+
+<p>Now need to add a handler. Head to folder handlers under helloworld. Edit main.yml</p>
+<pre>
+- name: restart helloworld
+  service:
+      name: helloworld
+      state: restarted
+</pre>
+
+<p>Module dependency. The app needs node4j to run. Open meta/main.yml
+At the bottom, remove [] and make it appear</p>
+<pre>
+dependencies:
+   - pre_req
+   - nodejs
+</pre>
+
+<h3 id="main-playbook-file">Main Playbook file</h3>
+<p>Here is the main playbook file</p>
+<pre>
+---
+- hosts: test_servers
+  become: yes
+  roles:
+     - helloworld
+</pre>
+
+<p>Now play the playbook file:
+<code class="highlighter-rouge">ansible-playbook helloworld.yml --private-key ../HostForAnsibleKey.pem</code></p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/blog/author/alamgir" style="background-image: url(/blog/assets/images/alamgir.jpg)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/blog/author/alamgir">alamgir</a></h4>
+                
+                
+                    <p> A human being with passion for science, technology, music and history.</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Ontario, Canada</span> 
+                    <span class="author-link icon-link"><a href="https://alamgirm.github.io/blog/"> https://alamgirm.github.io/blog</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Continuous Integration and Continuous Development on AWS : part III - Ansible&amp;url=https://alamgirm.github.ioContinuous-Integration-and-Continuous-Deployment-using-AWS-part-III"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://alamgirm.github.ioContinuous-Integration-and-Continuous-Deployment-using-AWS-part-III"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://alamgirm.github.ioContinuous-Integration-and-Continuous-Deployment-using-AWS-part-III"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            <!-- if page.disqus  -->
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+        var disqus_identifier = '/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III';
+        var disqus_url = 'https://alamgirm.github.io/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-III';
+ 
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+            <!--  endif  -->
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/blog/assets/images/cover/cover7.jpg)" href="/blog/Continuous-Integration-and-Continuous-Deployment-using-AWS-part-II">
+            <section class="post">
+                <h2>Continuous Integration and Continuous Deployment on AWS : part II - CloudFormation</h2>
+                <p>In the last post we created a limited-rights IAM user that we’ll use in this...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/blog/">Alamgir's Blog</a> &copy; 2018</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/biomadeira/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/blog/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/index.js"></script>
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-450244-4', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>

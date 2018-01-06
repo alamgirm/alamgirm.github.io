@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>https://alamgirm.github.io/blog</title>
+   
+   <link>https://alamgirm.github.io</link>
+   <description>Programming, Automation, Data Science, Machine Learning, Visualizations, Arduino, Raspberry Pi and other IoT.</description>
+   <language>en_GB</language>
+   <managingEditor> alamgir</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Earliest Microprocessor: Zilog Z80</title>
+	  <link>/blog//earlier-microprocessor-Zilog-Z80</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-12T02:18:00-04:00</pubDate>
+	  <guid>/blog//earlier-microprocessor-Zilog-Z80</guid>
+	  <description><![CDATA[
+	     <p>The CPU design team at Intel in the 70’s was led by <a href="https://en.wikipedia.org/wiki/Federico_Faggin">Federico Faggin</a>. After resigning from Intel Federico formed the start-up company Zilog, for design, development and marketing of microprocessor. <img src="/blog/assets/images/2017/17_06_12_Zilog_Z80.jpg" alt="Zilog Z80" class="rightimg" /> Zilog Z80 was their first product to hit the market, aimed for embedded applications. Its direct competitor was Intel 8080, and in fact Zilog always highligheted in commercials about its superiority over 8080. Compared to Intel 8080 which required +12V, -5V and +5V, Z80 needed only one +5V supply, had simple clock, and supported more registers, instructions, addressing modes, and even non-maskable interrupts.   Z80 was a gigantic success that helped the company grew from just elevel to a thousand employees in just two years. Many other semiconductor companies around the world copied the design of Z80 and sold their chips. Famaous Atari computuers, the first one to have color display were built on Zilog Z80.</p>
+
+<!--more-->
+
+<h2 id="zilog-z80">Zilog Z80</h2>
+<p>Looking at the internal block diagram, Zilog Z80 has similar architecture as compared to Intel 8080, same 8-bit data bus and registers, and 16-bit address bus. What is surprising is the inclusion of two sets of general purpose registers. Namely, the registers <code class="highlighter-rouge">W, Z, B, C, D, E, H, L</code> can used in pairs to act like 16-bit as with 8080, but their contents can be saved by copying to a whole set of mirrored registers named <code class="highlighter-rouge">W', Z', B', C', D', E', H', L'</code>- and this could be done using just one EXX instruction. The accumulator <code class="highlighter-rouge">A</code> has also a friend <code class="highlighter-rouge">A'</code> also do the flags set <code class="highlighter-rouge">F</code> as <code class="highlighter-rouge">F'</code>. These primed registers could not be loaded directly, only could have swapped values with their counterparts. The special purpose registers are similar, bearing similar names too: PC (program counter), SP (stack pointer), IX and IY (both index registers). This feature of having two sets of registers make programming much easier when writing sub-routine or interrupt service.</p>
+
+<p><img src="/blog/assets/images/2017/17_06_12_Zilog_Z80_arch.png" alt="Zilog 80" title="Zilog Z80 CPU architecture." /></p>
+
+<p>Zilog Z80 supported maximum of 64KB memory, and additional 256 I/O ports each. Dymanic memories could be used without specilized refresh circuit as the CPU itself provides one.</p>
+
+<p>Similar to Intel 8080, Zilog Z80 overlaps its fetching and executing cycle, meaning, while an instruction is being executed, the next instruction is fetched from memory if the bus is is not being used. Most of the instructions for Z80 are just one byte, but the longest one can be 4-byte long. The total number of instructions is also higher than Intel 8080.</p>
+
+<h3 id="support-chips">Support Chips</h3>
+<p>A full-blown system with Zilog Z80 could be built without needing much extra chips. However, many of the following chips that were originally designed to work with Intel 8080 work just fine with Zilog Z80.</p>
+
+<ul>
+  <li>8238 System controller and bus driver</li>
+  <li>8251 UART (universal asynchronous/synchronous receiver/transmitter)</li>
+  <li>8253 programmable interval timer/counter</li>
+  <li>8255 programmable peripheral device</li>
+  <li>8257 DMA (direct memory access) controller</li>
+  <li>8259 interrupt controller</li>
+</ul>
+
+<h4 id="credits">Credits</h4>
+<ul>
+  <li>The Zilog Z80 image is courtesy of <a href="http://www.cpu-world.com/CPUs/Z80/">CPU-World.com</a></li>
+  <li>The architecture image is borrowed from <a href="http://www.z80.info/z80arki.htm">Z80 Info</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Earliest Microprocessor: Intel 8080</title>
+	  <link>/blog//earlier-microprocessor-intel-8080</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-07T21:18:00-04:00</pubDate>
+	  <guid>/blog//earlier-microprocessor-intel-8080</guid>
+	  <description><![CDATA[
+	     <p>The history of what we know as microprocessor (MPU) began with Intel Corporation’s 4004 chip, which they built to replace hardwired logic in simple applications. It was a 4-bit processor with very little programming capability which they improved in later 4040 processor. <img src="/blog/assets/images/2017/17_06_08_Intel_8080.png" alt="Intel 8080" class="leftimg" /> Intel followed the development with 8008, and then 8080 both 8-bit processors with better programming support. In fact 8080 was used in a wide range of applications, including the design of few personal computers (PC), and industrial robots. It is the first processor that revolutionized the industry and dictated the future of microprocessors.  Intel 8080 still required extra chips, such as memory, bus controller, clock generator etc to work as a system. This was later improved upon in 8085 that was what we now call system on a chip (SoC)- a chip with built-in everything that requires very little extra to work as a system.</p>
+
+<!--more-->
+
+<h2 id="intel-8080">Intel 8080</h2>
+<p>Though 8085 was a much advanced all-in-one chip, it becomes easier if we start our journey of understanding microprocessor generations with 8080. The matter of fact is that 8080 was so popular that there was numerous semiconductor company started manufacturing chips that cloned the functionalities of 8080.</p>
+
+<p>An 8080 is an 8-bit processor, fabricated as a 40-pin chip. It had 8 pins for data I/O, 16 pins for address, 4 control inputs <code class="highlighter-rouge">HOLD, READY, RESET, INT</code> and 6 control outputs <code class="highlighter-rouge">WAIT, HOLDA, INTE, DBIN, SYNCH, WR</code>. Looking at the architecture, an 8080 has accumultor, temporary register, instruction register, stack pointer and few <code class="highlighter-rouge">B, C, D, E, H, I</code> general purpose registers. Some of the registers <code class="highlighter-rouge">BC, DE, HI</code> can be thought of paired and used as a single 16-bit register when programming.</p>
+
+<p><img src="/blog/assets/images/2017/17_06_08_Intel_8080_arch.png" alt="Intel 8080" title="Intel 8080 CPU architecture." /></p>
+
+<p>Instructions have different lengths, most are one or two bytes, few are three bytes. The program counter (PC) however knows this fact when incrementing its value to point to the next instruction in memory. Same memory holds both data and program, and maximum of 64KB is supported. However, 8080 also supports what is called I/O address space. That means, I/O devices could be attached to the data and address bus, (in conjunction with <code class="highlighter-rouge">READY, WAIT, HOLD, HOLDA</code>) without sharing the memory address space. A total of 256 input and 256 output ports are supported; each port has 8-bit parallel data transfer capability.</p>
+
+<p>Interrupts are supported via <code class="highlighter-rouge">INT</code> (interrupt request) pin. However, it is software maskable (can be enabled/disabled) using <code class="highlighter-rouge">EI/DI</code> instructions. When an intrrupt occurs, the CPU acknowledes by enabling <code class="highlighter-rouge">INTE</code> pin. For storing the addresses of interrupt service routines, first 64 bytes in memory are reserved.</p>
+
+<h3 id="support-chips">Support Chips</h3>
+<p>A full-blown system with Intel 8080 required few support chips. Among them these were popular:</p>
+
+<ul>
+  <li>8238 System controller and bus driver</li>
+  <li>8251 UART (universal asynchronous/synchronous receiver/transmitter)</li>
+  <li>8253 programmable interval timer/counter</li>
+  <li>8255 programmable peripheral device</li>
+  <li>8257 DMA (direct memory access) controller</li>
+  <li>8259 interrupt controller</li>
+</ul>
+
+<h4 id="credits">Credits</h4>
+<ul>
+  <li>The 8080 image is borrowed from <a href="http://www.wikiwand.com/de/Intel_8080">WikiWand</a></li>
+  <li>The 8080 architecture image is taken from <a href="http://expaworld.blogspot.com">Blogspot</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Designing a simple microprocessor</title>
+	  <link>/blog//design-a-simple-microprocessor</link>
+	  <author>alamgir</author>
+	  <pubDate>2017-06-03T19:18:00-04:00</pubDate>
+	  <guid>/blog//design-a-simple-microprocessor</guid>
+	  <description><![CDATA[
+	     <p>A microprocessor is physicaly a semiconductor chip with lots of pins to connect to other chips but what makes it special is that it can execute certain instructions. Here execution means that when certain electrical signals are presented at the inputs of the microprocessor, is produces some appropriate signals at its output pins. How does a microprocessor do that, or how can we design our own microprocessor to understand the inner working?  <img src="/blog/assets/images/2017/17_06_03_intel8086.png" alt="Intel 8086 MPU chip. Z80" class="rightimg" />This posts discusses how to do just that. While doing so, we will also design an instruction set for the microprocessor, and demonstrate how programs are written, and then made to get executed by the processor.</p>
+
+<!--more-->
+
+<h1 id="introduction">Introduction:</h1>
+<p>Before going into the details, let us assume that we know about the building blocks of digital logic circuits. In particular, we know what a register is (its also called a latch), how memory is organized and accessed, and what an arithmetic &amp; logic unit is, or how it works. I will try to touch upon each of thse block in short.</p>
+
+<h3 id="register">Register</h3>
+<p>Register is the fancy name of a latch of certain size. Well a latch is essentially a D-flipflop. So, basically registers are banks of flip-flops of certain bit widths. Commonly a microprocessor has quite a few registers- some are called general purpose that could be used for programming by the programmer, and some are called special purpose that serve special functions and normally can not be used by the programmer. It is almost a tradition to name the general purpose registers as A, B, C etc, and special purpose registers with their descriptive name e.g, IP (Instruction Pointer), IR (Instruction Register), F (Flags) etc.</p>
+
+<h3 id="memory">Memory</h3>
+<p>Memory, almost always called RAM, is a temporary storage of data and program. In implementation, they could be an array of JK flipflops arranged in a rectangular manner. Word width is the count of bits the memory can store under a single addressable unit. So for example. if we have a (16-bit x 256) memory, its word size is 16-bit and the storage capacity is 256 words. More elaborately, we could store 256 data in it, with each data being 16 bits. However, we could not read/write individual bit of a data, we have to read/write the whole data item. Further, it will most likely have 16 pins for transferring of data, 8 pins for address selection, and few more control pins for indicating read/write operations etc.</p>
+
+<h3 id="arithmetic-and-logic-unit">Arithmetic and Logic Unit</h3>
+<p>Often called the workhorse of a micropriocessor, an ALU is a logic circuit that can perform certain operations. At the simplest level, it should be capabale of adding/subtracting two numbers, doing bitwise and/or/not opearations. If one wants to build an ALU, what he needs are: adder/subracter chip, logic gates, and a multiplexer to control which operation is going to take place.</p>
+
+<p><img src="/blog/assets/images/2017/17_06_03_simple_cpu_block.png" alt="MPU Block diagram" title="Block diagram of a MPU." /></p>
+
+<h1 id="design-considerations">Design Considerations:</h1>
+<p>The first thing that I considered in designing the MPU is bus width, it is 8-bit. What it means that all the general purpose registers, the word-width of ALU etc is 8-bit. The second point is the width of each instruction, 8-bit is way too low since each instruction embodies quite a few bit of information for the MPU. The choice was made it to have 16-bit. The third major decision is the architecture-  whether to have separate memories for program and data. In this design I chose to have separate memories. Once these decisions are taken, some more points follow: how many general purpose registers to have, how many flag bits to have, and whether or not to have any registers to feed/buffer the ALU.</p>
+
+<p>In light of these decisoins, if we look at the block diagram above, I have two general purpose registers (A and B), a buffer register (R) to hold result of an operation before it could be written to memory. Our program memory is 16-bit X 256, and data memory is 8-bit x 256. I also have  IP (Instruction Pointer) and IR (Instruction Register). The value of IP indicates the address of the instruction in the program memory that is going to be executed <i>next</i>. The value of IR is the current instruction that is being executed <i>currently</i> by the MPU (more precisely by the decoding/controlling unit). The block that reads Instruction decoding and controlling unit is the brain of the MPU. This block itself could be, for argument’s sake considered as an MPU! Nonetheless, in real MPU the decoding unit could be programmed (by the MPU designer) and its appropriately called microprogamming. In our case, what exactly goes inside the decoding unit is dependent on the instruction format disscussed later. The simplest decoder/controller is a table (implemented in a memory) whose address lines are driven by the opcode of an instruction, and data values are control signals for all other blocks.</p>
+
+<p>To indicate some conditions/errors I included some flags which read only from outside.</p>
+
+<p><em>Note:</em> The MPU does not intend to access outside off-chip memory for program/data at this stage. However, the on-chip program and data memories are readliy accessible from outside. So, if we want to write a program, or preload some data, we’d just have to write to the respective memory. To achieve this the CPU has two input control lines DataMem and ProgrMem.</p>
+
+<p><a name="opcode_mnemonic"></a> 
+###Instruction Set Design:
+An entire instruction has this format:<br />
+&lt;4-bit opcode&gt;&lt;4-bit indicator&gt; &lt;8-bit argument&gt;<br />
+The leftmost 4 bits indicate which of the sixteen instructions is being denoted.</p>
+
+<p>Below is the list of the instructions, their opcodes and description.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Opcode(binary)</th>
+      <th style="text-align: center">Nmemonic</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0000</td>
+      <td style="text-align: center">NOP</td>
+      <td style="text-align: left">No operation, wastes a cycle</td>
+    </tr>
+    <tr>
+      <td>0001</td>
+      <td style="text-align: center">STOP</td>
+      <td style="text-align: left">Stops/hatls execution of the program</td>
+    </tr>
+    <tr>
+      <td>0010</td>
+      <td style="text-align: center">DUMP</td>
+      <td style="text-align: left">Dumps the contents of program/data memory</td>
+    </tr>
+    <tr>
+      <td>0011</td>
+      <td style="text-align: center">LOAD</td>
+      <td style="text-align: left">Loads a constant value or data from data memory</td>
+    </tr>
+    <tr>
+      <td>0100</td>
+      <td style="text-align: center">STOR</td>
+      <td style="text-align: left">Stores a constant value or register value to data memory</td>
+    </tr>
+    <tr>
+      <td>0101</td>
+      <td style="text-align: center">XCHG</td>
+      <td style="text-align: left">Swaps the value of registers A and B</td>
+    </tr>
+    <tr>
+      <td>0110</td>
+      <td style="text-align: center">JMP</td>
+      <td style="text-align: left">Jumps the execution to a location in program memory</td>
+    </tr>
+    <tr>
+      <td>0111</td>
+      <td style="text-align: center">JMPE</td>
+      <td style="text-align: left">Jumps if the values of register A and B are equal</td>
+    </tr>
+    <tr>
+      <td>1000</td>
+      <td style="text-align: center">ADD</td>
+      <td style="text-align: left">Adds a constant or memory value to a register value</td>
+    </tr>
+    <tr>
+      <td>1001</td>
+      <td style="text-align: center">SUB</td>
+      <td style="text-align: left">Subtracts a constant or memory value from a register value</td>
+    </tr>
+    <tr>
+      <td>1010</td>
+      <td style="text-align: center">INC</td>
+      <td style="text-align: left">Increments the value of a register by one</td>
+    </tr>
+    <tr>
+      <td>1011</td>
+      <td style="text-align: center">DEC</td>
+      <td style="text-align: left">Decrements the value of a register by one</td>
+    </tr>
+    <tr>
+      <td>1100</td>
+      <td style="text-align: center">AND</td>
+      <td style="text-align: left">Bitwise AND between a constant or memory value with register value</td>
+    </tr>
+    <tr>
+      <td>1101</td>
+      <td style="text-align: center">OR</td>
+      <td style="text-align: left">Bitwise OR between a constant or memory value with register value</td>
+    </tr>
+    <tr>
+      <td>1110</td>
+      <td style="text-align: center">NOT</td>
+      <td style="text-align: left">Bitwise NOT, 1’s complement of a register value, fixed value or memory value</td>
+    </tr>
+    <tr>
+      <td>1111</td>
+      <td style="text-align: center">XOR</td>
+      <td style="text-align: left">Bitwise AND between a constant or memory value with register value</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Next 4 bits act as flag or indicator about what is the last 8-bit part. The meanings are defined as below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Indicator</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0000</td>
+      <td style="text-align: left">Ignore the argument</td>
+    </tr>
+    <tr>
+      <td>0001</td>
+      <td style="text-align: left">The argument value is a memory address</td>
+    </tr>
+    <tr>
+      <td>0010</td>
+      <td style="text-align: left">The argument value is a constant data</td>
+    </tr>
+    <tr>
+      <td>0011</td>
+      <td style="text-align: left">Unused</td>
+    </tr>
+    <tr>
+      <td>11xx</td>
+      <td style="text-align: left">Unused</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The indicators meaning could however be different depending on the instruction itself. This is done as an exeception for DUMP the instruction, where 0001 indicates dump the contents of the program memory and 0010 meaning dump the content of the data memory.</p>
+
+<p>The last 8-bit part of an instruction can have multiple meaning depending on the flag/indicator bits. This part could indicate a memory address, a constant data value, or nothing.</p>
+
+<h3 id="flag-registers">Flag Registers</h3>
+<p>Each bit of the Result flag register has a meaning associted. They are:</p>
+
+<ul>
+  <li>Zero Flag – equals to 1 if the value in R is zero</li>
+  <li>Carry Flag – equals to 1 if there is any carry out in an addition operation</li>
+  <li>Sign Flag  – equals to 1 if the most significant bit of R is 1</li>
+  <li>Error Flag – equals to 1 if there is an error in executing the program</li>
+</ul>
+
+<p>The other two flags are: BUSY and DONE. BUSY goes active while the MPU is executing program. DONE goes active when the program is successfully finished executing (without any error).</p>
+
+<h1 id="example-instructions">Example Instructions:</h1>
+<p>Below are some example instructions that the MPU should be able to execute. The symbol $ indicates hexadecimal vlaue.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Instruction</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LOAD $4</td>
+      <td style="text-align: left">Loads the value 4 to register A</td>
+    </tr>
+    <tr>
+      <td>LOAD [$4]</td>
+      <td style="text-align: left">Loads the value at data memory location 4 to register A</td>
+    </tr>
+    <tr>
+      <td>STOR [$5]</td>
+      <td style="text-align: left">Stores the value of register A into data memory location 5</td>
+    </tr>
+    <tr>
+      <td>ADD $12</td>
+      <td style="text-align: left">Adds 12 to the value of register A, result is in register R</td>
+    </tr>
+    <tr>
+      <td>ADD [$10]</td>
+      <td style="text-align: left">Adds data at data memory location 10 to the value of register A, result is in register R</td>
+    </tr>
+    <tr>
+      <td>INC</td>
+      <td style="text-align: left">Increments the value of register A, result is in R</td>
+    </tr>
+    <tr>
+      <td>DEC</td>
+      <td style="text-align: left">Decrements the value of register A, result is in R</td>
+    </tr>
+    <tr>
+      <td>SUB $4</td>
+      <td style="text-align: left">Subtracts 4 from value of register A, result is in R</td>
+    </tr>
+    <tr>
+      <td>XCHG</td>
+      <td style="text-align: left">Register B gets value of A, register A gets value of R</td>
+    </tr>
+    <tr>
+      <td>JMP $16</td>
+      <td style="text-align: left">Jumps unconditionally to program memory address 16</td>
+    </tr>
+    <tr>
+      <td>JMPE $16</td>
+      <td style="text-align: left">Jumps to program memory address 16 if registers A and B have same values</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="assembler-design">Assembler Design:</h1>
+<p>This little MPU, no joking has its own assember- for converting a program written in forms of nmemonic into machince code, so that the MPU can execute. The assembler, in theory can support more instructions that the MPU, it just has to map those extra instructions into the supported ones. For instance, it could support MULT for multiplication, though the MPU does not have any such instruction. The assembler when sees a MULT, just has to do its magic and make a loop using JMP/JMPE instruction to implement the multiplication operation.</p>
+
+<p>Though the assembler I designed does not support any MULT, it does however adds few features, for example storing a constant data to a memory location (note the MPU only supports storing from A to memory).
+Below is a table showing examples of supported features.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Assembly example</th>
+      <th style="text-align: left">Mapped nmemonics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Load $80 into address $0</td>
+      <td style="text-align: left">LOAD $80 <br /> SOTR [$0]</td>
+    </tr>
+    <tr>
+      <td>Add $3F to address $0	<br /> and store to result into address $1</td>
+      <td style="text-align: left">LOAD [$0] <br /> ADD $3F <br /> XCHG <br /> STOR [$1]</td>
+    </tr>
+    <tr>
+      <td>XOR value at address $2 with $AA <br /> and store the result into address $3</td>
+      <td style="text-align: left">LOAD [$2] <br /> XOR $AA <br /> XCHG <br /> STOR [$3]</td>
+    </tr>
+    <tr>
+      <td>Subtract $80 from address $1	<br /> and store the result to address $6</td>
+      <td style="text-align: left">LOAD [$1] <br /> SUB $80 <br /> XCHG <br /> STOR [$6]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Full details of the assembler could be found in the <a href="design-a-simple-assembler.html">next post</a>.</p>
+
+<h1 id="implementation">Implementation:</h1>
+<p>The MPU is implemented in VHDL (a language to describe hardware to create!) I used Cadence to compile the model, and finally floor-planned the chip as a 20-pin setup using Cadence Encounter. The final result is shown:
+<img src="/blog/assets/images/2017/17_06_03_simple_cpu_final.png" alt="MPU Floorplan" title="Final MPU." /></p>
+
+<h1 id="tests">Tests:</h1>
+<p>The CPU was not fabricated, but was tested for functionality with Cadence Design Vision and found fully functional as expected.</p>
+
+<script id="dsq-count-scr" src="//alamgirm.disqus.com/count.js" async=""></script>
+
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
