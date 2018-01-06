@@ -6,58 +6,116 @@
 </description>
     <link>https://alamgirm.github.io/</link>
     <atom:link href="https://alamgirm.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 25 Dec 2017 14:13:37 -0500</pubDate>
-    <lastBuildDate>Mon, 25 Dec 2017 14:13:37 -0500</lastBuildDate>
+    <pubDate>Sat, 06 Jan 2018 01:53:16 -0500</pubDate>
+    <lastBuildDate>Sat, 06 Jan 2018 01:53:16 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+        <title>Customer Segments</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/customer_segment.jpg&quot; alt=&quot;Charity Donor&quot; style=&quot;float:right&quot; /&gt;
+We have a wholesale distributor who sells products to different types of customers. Though the company groups the products into six main categories, it does not have any clear-cut distinction between customers. Though it beleives that the customers should fall into some kinds categories. The company has sales record for the six product categories for different customers. To save cost, the company is studying in using an alternative shipping method.&lt;/p&gt;
 
-&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+&lt;p&gt;This objective of this project is to help the company put the customers into meaningful categories. We should also find out, how the new shipping method could be tried without disrupting the customer satisfaction.&lt;/p&gt;
+
+&lt;p&gt;The project files are available in &lt;a href=&quot;https://github.com/alamgirm/customer_segments&quot;&gt;Github repo.&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Mon, 09 Oct 2017 11:39:40 -0400</pubDate>
-        <link>https://alamgirm.github.io/2017/10/09/project4/</link>
-        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/09/project4/</guid>
+        <pubDate>Tue, 10 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/Customer-Segments</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Customer-Segments</guid>
         
         
       </item>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+        <title>Prospective Charity Donors</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/charity_donor.jpg&quot; alt=&quot;Charity Donor&quot; style=&quot;float:right&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+&lt;p&gt;Charities do good work, but they survive on donations from wealthy people. In this project we develop a machine learning modelt that tries to identify from census data who earn 50K or more. Understaning the income of an individual makes sense for a charity in deciding who to approach for donation, and how much the request should be.&lt;/p&gt;
+
+&lt;p&gt;While it can be difficult to determine an individual’s income bracket directly from publicly available data, we find in this project that is indeed possible infer the information.&lt;/p&gt;
+
+&lt;p&gt;The Jupyter Notebook file using Python for this project, and other files are available in &lt;a href=&quot;https://github.com/alamgirm/finding_donors&quot;&gt; Github Repo&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 08 Oct 2017 11:39:40 -0400</pubDate>
-        <link>https://alamgirm.github.io/2017/10/08/project3/</link>
-        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/08/project3/</guid>
+        <link>https://alamgirm.github.io/Prospective-Donors-for-Charity</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Prospective-Donors-for-Charity</guid>
         
         
       </item>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+        <title>Identify Spam Messages</title>
+        <description>&lt;p&gt;&lt;span style=&quot;display:block;text-align:center&quot;&gt;&lt;img src=&quot;/images/spam_email.jpg&quot; alt=&quot;Spam Message&quot; /&gt;&lt;/span&gt; 
+As widespread the use of emails, texts and other form of instant messages, the rise of spam is also common. 
+A spam message is an unwanted message sent indrescriminantly to a large number of people possibly to take unfair/unlawful advantage of. 
+And, detection of spam is one of the major applications of Machine Learning. These days, most the major email providers employ some kind of spam detection system into their mail infrastructure. Such a system automatically classifies a spam message as such and put it in a special folder so that the user can easily review and delete it.&lt;/p&gt;
 
-&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+&lt;p&gt;In this project, we have a collection of SMS messages. It is found that messages containing words like ‘free’, ‘win’, ‘winner’, ‘cash’, ‘prize’, ‘spin’ etc are more likely to be a spam. They are designed to catch the attention of recipient and make them tempted to open. Sometimes, spam message are written in all capital lettes, and use lots of exclamation marks. While an intelligent human being can easily identify a spam message, our goal in this work is to build a model that could automatically classify messages as spam or not.&lt;/p&gt;
+
+&lt;p&gt;The classification model is built upon Bayesian theory of probability. In particular, we use the Naive Bayes to keep things simpler, where the ordering of the words in a message are ignored. The model works by building table of probabilities of words that we see in a good legitimate messages. Highly common words, punctuation etc are ignored. If the model finds a message containg words that are unlikey or not matching the probabilities of words of legimate messages it flags the message as spam.&lt;/p&gt;
+
+&lt;p&gt;The Jupyter Notebook file using Python for this project is &lt;a href=&quot;https://github.com/alamgirm/spam_bayesian&quot;&gt;available here.&lt;/a&gt;&lt;/p&gt;
+
 </description>
         <pubDate>Sat, 07 Oct 2017 11:39:40 -0400</pubDate>
-        <link>https://alamgirm.github.io/2017/10/07/project2/</link>
-        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/07/project2/</guid>
+        <link>https://alamgirm.github.io/Identify-Spam-Messages</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Identify-Spam-Messages</guid>
         
         
       </item>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;&lt;img src=&quot;https://unsplash.it/800/600&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+        <title>Identify Dog Breed!</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/dog_full.jpg&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Bavaria ipsum dolor sit amet g’hupft wia gsprunga wolln dringma aweng oba Biazelt hogg di hera helfgod. Sog i hawadere midananda nomoi a bissal wos gehd ollaweil gor kumm geh naa jo leck mi, Xaver: Weiznglasl i hob di liab des muas ma hoid kenna.&lt;/p&gt;
+&lt;p&gt;In this project a Convolutional Neural Network (CNN) is used to classify breed of a dog from its image. The online demo is already trained with over 1 millions samples from over a thousand breeds, and is ready to identify the breed of a user supplied image of a dog.&lt;/p&gt;
+
+&lt;p&gt;Architecture: 
+Classifiction accuracy:&lt;/p&gt;
+
+&lt;p&gt;Try now with a picture of your dog.&lt;/p&gt;
 </description>
         <pubDate>Fri, 06 Oct 2017 11:39:40 -0400</pubDate>
-        <link>https://alamgirm.github.io/2017/10/06/project1/</link>
-        <guid isPermaLink="true">https://alamgirm.github.io/2017/10/06/project1/</guid>
+        <link>https://alamgirm.github.io/Indentify-dog-breed</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Indentify-dog-breed</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Predicting Boston Housing Prices</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/boston_house.jpg&quot; alt=&quot;Housing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Prices of houses rely on many factors: neighborhood, building type, age of building, number and size of rooms, land lot size, median income of neighborhood etc. Real estate agencies record and often publish average prices of house that are sold. For a buyer and seller  it is very important to know the estimated value of a house before the parties can begin an offer or negotiation.&lt;/p&gt;
+
+&lt;p&gt;In this project prices for some houses in suburbs of Boston, Massachusetts are given. The task is to build a machine learning model, that could estimate the price of a house whose value is unknwon. In the given traing dataset, there are three features: RM (average number of rooms), LSTAT (percentage of homeowners who are working class) and PTRATIO (student/teacher ration in primary and secondary schools). The price is given as MDEV (median value). The objective of this project is to build a model that could fit the prices. The goodness of the model is measured in R^2 (the closer to 1 is better).&lt;/p&gt;
+
+&lt;p&gt;The Jupyter Notebook file using Python for this project is &lt;a href=&quot;https://github.com/alamgirm/boston_housing&quot;&gt;available here.&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 06 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/Boston-Housing-Price</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Boston-Housing-Price</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Titanic Survival Exploration</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/titanic.jpg&quot; style=&quot;float:right&quot; alt=&quot;Titanic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In 1912, the ship RMS Titanic hit an iceberg on its maiden voyage and sank. Most of its passengers and crew died, though a number of them did survive. This machine learning (ML) project is to explore passenger manifest of Titanic and find any realtion between surving and any attributes of a passenger. A subset of the manifes was provided as training set for which the outcome of survival, i.e, survied or dead is known. The ML model should learn from this set. A test set was then given with passenger of unkown destiny. The ML model should reliably predict what happened to these test cases.&lt;/p&gt;
+
+&lt;p&gt;In the passenger manifest a number of features about the passengers are avaible, including name, age, seating class, ticket number, fare paid, port of embarcation etc. Not all passengers have every piece of information, meaning some of the feature values were missing. The objective of this project is to: (i) identify the features that are highly related to the survival outcome (ii) predict the outcome at least with 80%.&lt;/p&gt;
+
+&lt;p&gt;The Jypyter notebook code using Python for this project is found &lt;a href=&quot;https://github.com/alamgirm/titanic_survival_exploration&quot;&gt;here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It was found the most significant feature that determined the survival is gender- more female passengers survived than male passengers. The second most important feature was age: younger passengers had survived more than older ones. The third most significant feature was seating class. Passengers from lower classes didnt quite make it as passengers from upper classes.&lt;/p&gt;
+
+&lt;p&gt;These findings actually reflect the facts that women and children were given preference in leaving the ship and boarding on lifeboats. It is also a fact that upper-class passengers who stayed in cabin had easy access to lifeboats whereas lower-deck passengers had to clib up to upper level to access them. More of these historical interesting facts are discussed &lt;a href=&quot;https://www.natgeokids.com/nz/discover/history/general-history/would-you-have-survived-the-titanic/&quot;&gt; in Nat Geo website.&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 01 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/Titanic-Survival-Exploration</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Titanic-Survival-Exploration</guid>
         
         
       </item>
