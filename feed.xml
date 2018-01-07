@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Alamgir's Portfolio</title>
-    <description>This is a showcase portiofolio for Alamgir Mohammed.
+    <title>Machine Learning and Data Science Demo</title>
+    <description>This is a showcase of works done by Alamgir Mohammed.
 </description>
     <link>https://alamgirm.github.io/</link>
     <atom:link href="https://alamgirm.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 06 Jan 2018 23:53:45 -0500</pubDate>
-    <lastBuildDate>Sat, 06 Jan 2018 23:53:45 -0500</lastBuildDate>
+    <pubDate>Sun, 07 Jan 2018 11:27:10 -0500</pubDate>
+    <lastBuildDate>Sun, 07 Jan 2018 11:27:10 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -54,7 +54,7 @@ And, detection of spam is one of the major applications of Machine Learning. The
 &lt;p&gt;In this project, we have a collection of SMS messages. It is found that messages containing words like ‘free’, ‘win’, ‘winner’, ‘cash’, ‘prize’, ‘spin’ etc are more likely to be a spam. They are designed to catch the attention of recipient and make them tempted to open. Sometimes, spam message are written in all capital lettes, and use lots of exclamation marks. While an intelligent human being can easily identify a spam message, our goal in this work is to build a model that could automatically classify messages as spam or not.&lt;/p&gt;
 
 &lt;div style=&quot;border:1px solid gray ; padding:5px; margin-bottom:15px; text-align:center&quot;&gt;
-&lt;a href=&quot;http://portfolio.bitcloudy.ca/spam_message/index.py&quot;&gt;View a live demo of this project.&lt;/a&gt; 
+&lt;a href=&quot;http://demo.bitcloudy.ca/spam_message/index.py&quot;&gt;View a live demo of this project.&lt;/a&gt; 
 &lt;/div&gt;
 
 &lt;p&gt;The classification model is built upon Bayesian theory of probability. In particular, we use the Naive Bayes to keep things simpler, where the ordering of the words in a message are ignored. The model works by building table of probabilities of words that we see in a good legitimate messages. Highly common words, punctuation etc are ignored. If the model finds a message containg words that are unlikey or not matching the probabilities of words of legimate messages it flags the message as spam.&lt;/p&gt;
