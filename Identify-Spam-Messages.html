@@ -60,6 +60,8 @@ And, detection of spam is one of the major applications of Machine Learning. The
 
 <p>In this project, we have a collection of SMS messages. It is found that messages containing words like ‘free’, ‘win’, ‘winner’, ‘cash’, ‘prize’, ‘spin’ etc are more likely to be a spam. They are designed to catch the attention of recipient and make them tempted to open. Sometimes, spam message are written in all capital lettes, and use lots of exclamation marks. While an intelligent human being can easily identify a spam message, our goal in this work is to build a model that could automatically classify messages as spam or not.</p>
 
+<p><a href="http://portfolio.bitcloudy.ca/spam_message/index.py">View a live demo of this project.</a></p>
+
 <p>The classification model is built upon Bayesian theory of probability. In particular, we use the Naive Bayes to keep things simpler, where the ordering of the words in a message are ignored. The model works by building table of probabilities of words that we see in a good legitimate messages. Highly common words, punctuation etc are ignored. If the model finds a message containg words that are unlikey or not matching the probabilities of words of legimate messages it flags the message as spam.</p>
 
 <p>The Jupyter Notebook file using Python for this project is <a href="https://github.com/alamgirm/spam_bayesian">available here.</a></p>
