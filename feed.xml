@@ -6,8 +6,8 @@
 </description>
     <link>https://alamgirm.github.io/</link>
     <atom:link href="https://alamgirm.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 06 Jan 2018 22:44:56 -0500</pubDate>
-    <lastBuildDate>Sat, 06 Jan 2018 22:44:56 -0500</lastBuildDate>
+    <pubDate>Sat, 06 Jan 2018 23:53:45 -0500</pubDate>
+    <lastBuildDate>Sat, 06 Jan 2018 23:53:45 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -45,14 +45,17 @@ We have a wholesale distributor who sells products to different types of custome
     
       <item>
         <title>Identify Spam Messages</title>
-        <description>&lt;p&gt;&lt;span style=&quot;display:block;text-align:center&quot;&gt;&lt;img src=&quot;/images/spam_email.jpg&quot; alt=&quot;Spam Message&quot; /&gt;&lt;/span&gt; 
+        <description>&lt;p&gt;&lt;span style=&quot;display:block;float:right&quot;&gt;
+&lt;img src=&quot;/images/spam_email.jpg&quot; alt=&quot;Spam Message&quot; style=&quot;width: 450px;&quot; /&gt;&lt;/span&gt; 
 As widespread the use of emails, texts and other form of instant messages, the rise of spam is also common. 
 A spam message is an unwanted message sent indrescriminantly to a large number of people possibly to take unfair/unlawful advantage of. 
 And, detection of spam is one of the major applications of Machine Learning. These days, most the major email providers employ some kind of spam detection system into their mail infrastructure. Such a system automatically classifies a spam message as such and put it in a special folder so that the user can easily review and delete it.&lt;/p&gt;
 
 &lt;p&gt;In this project, we have a collection of SMS messages. It is found that messages containing words like ‘free’, ‘win’, ‘winner’, ‘cash’, ‘prize’, ‘spin’ etc are more likely to be a spam. They are designed to catch the attention of recipient and make them tempted to open. Sometimes, spam message are written in all capital lettes, and use lots of exclamation marks. While an intelligent human being can easily identify a spam message, our goal in this work is to build a model that could automatically classify messages as spam or not.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://portfolio.bitcloudy.ca/spam_message/index.py&quot;&gt;View a live demo of this project.&lt;/a&gt;&lt;/p&gt;
+&lt;div style=&quot;border:1px solid gray ; padding:5px; margin-bottom:15px; text-align:center&quot;&gt;
+&lt;a href=&quot;http://portfolio.bitcloudy.ca/spam_message/index.py&quot;&gt;View a live demo of this project.&lt;/a&gt; 
+&lt;/div&gt;
 
 &lt;p&gt;The classification model is built upon Bayesian theory of probability. In particular, we use the Naive Bayes to keep things simpler, where the ordering of the words in a message are ignored. The model works by building table of probabilities of words that we see in a good legitimate messages. Highly common words, punctuation etc are ignored. If the model finds a message containg words that are unlikey or not matching the probabilities of words of legimate messages it flags the message as spam.&lt;/p&gt;
 
