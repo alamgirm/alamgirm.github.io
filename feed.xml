@@ -6,9 +6,87 @@
 </description>
     <link>https://alamgirm.github.io/</link>
     <atom:link href="https://alamgirm.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Jan 2018 11:27:10 -0500</pubDate>
-    <lastBuildDate>Sun, 07 Jan 2018 11:27:10 -0500</lastBuildDate>
+    <pubDate>Tue, 16 Jan 2018 21:28:56 -0500</pubDate>
+    <lastBuildDate>Tue, 16 Jan 2018 21:28:56 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Parch and Posey</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/parch_posey.png&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a very simple project, introductory to data science.&lt;/p&gt;
+
+&lt;p&gt;Parch and Posey, a company that sells paper. They have fifty sales reps spread across the US in four regions. They sell three types of papers: regular, poster and glossy. Their clients are primarily large forture 100 companies who they attract by advertising on Google, Facebook and Twitter.&lt;/p&gt;
+
+&lt;p&gt;Example of questins we’d like to answer: Which product line is worst performing? Which of their marketing channels they should make a big investment in.&lt;/p&gt;
+
+&lt;p&gt;Parch and Posey database has five tables:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;accounts: all client accounts&lt;/li&gt;
+  &lt;li&gt;region: geographic regions of the market&lt;/li&gt;
+  &lt;li&gt;sales_rep: inforamation related to sales representatives in different regions&lt;/li&gt;
+  &lt;li&gt;web_events: advertising information&lt;/li&gt;
+  &lt;li&gt;orders: all data related to order&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The project files are available in in &lt;a href=&quot;https://github.com/alamgirm/parch_posey&quot;&gt; github.&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Nov 2017 10:39:40 -0500</pubDate>
+        <link>https://alamgirm.github.io/Parch-And_Posey</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Parch-And_Posey</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Motivate US Bike Share</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/bike_share.png&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.motivateco.com&quot;&gt;Motivate&lt;/a&gt; is bike sharing company that operates in major cities of CA, OR,W ashington DC, TN, NY, OH, I L and MA, under different brand names. Motivate makes their ride data public for anyone to analyze.&lt;/p&gt;
+
+&lt;p&gt;The users of Motivate are either a Subscriber who pays a monthly fee, and a reduced-rate ride fee, or a Customer who just shares the bike on demand and spot-payment basis. Customer dont pay any monthly fee, so their ride is is slightly higher than the Customers.&lt;/p&gt;
+
+&lt;p&gt;In this project we analyzied the ride data for 2016, for 3 major cities: NY City, Chicago, and Washington DC.&lt;/p&gt;
+
+&lt;p&gt;The project files are available in in &lt;a href=&quot;https://github.com/alamgirm/us_bike_share&quot;&gt; github.&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 13 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/Motivate-Bike-Sharing</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Motivate-Bike-Sharing</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Global Weather Trend</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/earth.png&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a very simple project, introductory to data science. There are three tables: global_data containing average global temperature, city_list containing a list of cities and the countries they belong to and city_data containing average temprature of different cities. The task of this project is to plot a 7-year moving average of global temperature. Then for a choosen city, plot the 7-year moving average temperature for the chosen city. The years are not exactly aligned, and there are a few missing values.&lt;/p&gt;
+
+&lt;p&gt;The project files are available in in &lt;a href=&quot;https://github.com/alamgirm/global_weather&quot;&gt; github.&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 12 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/Global-Temperature-Trend</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Global-Temperature-Trend</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Identify Dog Breed!</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/dog_full.jpg&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this project a Convolutional Neural Network (CNN) is used to classify breed of a dog from its image. The online demo is already trained with over 1 millions samples from over a thousand breeds, and is ready to identify the breed of a user supplied image of a dog.&lt;/p&gt;
+
+&lt;p&gt;Head to the &lt;a href=&quot;https://github.com/alamgirm/dog-project&quot;&gt;github&lt;/a&gt; project and try the dog
+classifier with a picture of your dog!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 11 Oct 2017 11:39:40 -0400</pubDate>
+        <link>https://alamgirm.github.io/Indentify-dog-breed</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/Indentify-dog-breed</guid>
+        
+        
+      </item>
     
       <item>
         <title>Customer Segments</title>
@@ -45,7 +123,12 @@ We have a wholesale distributor who sells products to different types of custome
     
       <item>
         <title>Identify Spam Messages</title>
-        <description>&lt;p&gt;&lt;span style=&quot;display:block;float:right&quot;&gt;
+        <description>&lt;div style=&quot;border:1px solid gray ; padding:5px; margin-bottom:15px; text-align:center&quot;&gt;
+&lt;a href=&quot;http://demo.bitcloudy.ca/spam_message/index.py&quot;&gt;Live Demo&lt;/a&gt; 
+&lt;span syle=&quot;width:20px&quot;&gt; &amp;nbsp; &lt;/span&gt;
+&lt;a href=&quot;https://github.com/alamgirm/spam_bayesian&quot;&gt;Github Repo&lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;span style=&quot;display:block;float:right&quot;&gt;
 &lt;img src=&quot;/images/spam_email.jpg&quot; alt=&quot;Spam Message&quot; style=&quot;width: 450px;&quot; /&gt;&lt;/span&gt; 
 As widespread the use of emails, texts and other form of instant messages, the rise of spam is also common. 
 A spam message is an unwanted message sent indrescriminantly to a large number of people possibly to take unfair/unlawful advantage of. 
@@ -53,36 +136,12 @@ And, detection of spam is one of the major applications of Machine Learning. The
 
 &lt;p&gt;In this project, we have a collection of SMS messages. It is found that messages containing words like ‘free’, ‘win’, ‘winner’, ‘cash’, ‘prize’, ‘spin’ etc are more likely to be a spam. They are designed to catch the attention of recipient and make them tempted to open. Sometimes, spam message are written in all capital lettes, and use lots of exclamation marks. While an intelligent human being can easily identify a spam message, our goal in this work is to build a model that could automatically classify messages as spam or not.&lt;/p&gt;
 
-&lt;div style=&quot;border:1px solid gray ; padding:5px; margin-bottom:15px; text-align:center&quot;&gt;
-&lt;a href=&quot;http://demo.bitcloudy.ca/spam_message/index.py&quot;&gt;View a live demo of this project.&lt;/a&gt; 
-&lt;/div&gt;
-
 &lt;p&gt;The classification model is built upon Bayesian theory of probability. In particular, we use the Naive Bayes to keep things simpler, where the ordering of the words in a message are ignored. The model works by building table of probabilities of words that we see in a good legitimate messages. Highly common words, punctuation etc are ignored. If the model finds a message containg words that are unlikey or not matching the probabilities of words of legimate messages it flags the message as spam.&lt;/p&gt;
-
-&lt;p&gt;The Jupyter Notebook file using Python for this project is &lt;a href=&quot;https://github.com/alamgirm/spam_bayesian&quot;&gt;available here.&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 07 Oct 2017 11:39:40 -0400</pubDate>
         <link>https://alamgirm.github.io/Identify-Spam-Messages</link>
         <guid isPermaLink="true">https://alamgirm.github.io/Identify-Spam-Messages</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Identify Dog Breed!</title>
-        <description>&lt;p&gt;&lt;img src=&quot;/images/dog_full.jpg&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In this project a Convolutional Neural Network (CNN) is used to classify breed of a dog from its image. The online demo is already trained with over 1 millions samples from over a thousand breeds, and is ready to identify the breed of a user supplied image of a dog.&lt;/p&gt;
-
-&lt;p&gt;Architecture: 
-Classifiction accuracy:&lt;/p&gt;
-
-&lt;p&gt;Try now with a picture of your dog.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 06 Oct 2017 11:39:40 -0400</pubDate>
-        <link>https://alamgirm.github.io/Indentify-dog-breed</link>
-        <guid isPermaLink="true">https://alamgirm.github.io/Indentify-dog-breed</guid>
         
         
       </item>
