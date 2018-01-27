@@ -6,9 +6,50 @@
 </description>
     <link>https://alamgirm.github.io/</link>
     <atom:link href="https://alamgirm.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Jan 2018 21:28:56 -0500</pubDate>
-    <lastBuildDate>Tue, 16 Jan 2018 21:28:56 -0500</lastBuildDate>
+    <pubDate>Sat, 27 Jan 2018 15:46:29 -0500</pubDate>
+    <lastBuildDate>Sat, 27 Jan 2018 15:46:29 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>911 Call Analysis</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/images/911.jpg&quot; alt=&quot;Picture 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a data analysis and visualization project based on Emergency 911-Calls dataset available at &lt;a href=&quot;https://www.kaggle.com/mchirico/montcoalert&quot;&gt; kaggle.&lt;/a&gt; The dataset has 289240 entries for real 911 calls made in 2015 in Montgomery County, PA, USA. Each call data has nine fields:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;lat : String variable, Latitude&lt;/li&gt;
+  &lt;li&gt;lng: String variable, Longitude&lt;/li&gt;
+  &lt;li&gt;desc: String variable, Description of the Emergency Call&lt;/li&gt;
+  &lt;li&gt;zip: String variable, Zipcode&lt;/li&gt;
+  &lt;li&gt;title: String variable, Title&lt;/li&gt;
+  &lt;li&gt;timeStamp: String variable, YYYY-MM-DD HH:MM:SS&lt;/li&gt;
+  &lt;li&gt;twp: String variable, Township&lt;/li&gt;
+  &lt;li&gt;addr: String variable, Address&lt;/li&gt;
+  &lt;li&gt;e: String variable, Dummy variable (always 1)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;a-brief-analysis&quot;&gt;A brief analysis&lt;/h3&gt;
+&lt;p&gt;The top five twonships that made most calls are: LOWER MERION (24826), ABINGTON (17820), NORRISTOWN (16546),UPPER MERION (15288) and CHELTENHAM (13359).&lt;/p&gt;
+
+&lt;p&gt;Among the three main services (EMS, Traffic and Fire), EMS seems get the most hit (49.9%), followed by Traffic 3(5.2%) and Fire (14.9%).
+&lt;img src=&quot;/images/911_service_type.png&quot; alt=&quot;Picture 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/911_service_type_dow.png&quot; alt=&quot;Picture 3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When viewed in terms of days of week, and months of year this proportions seem to hold. More noticeable, the number of calls to Fire seems to be pretty flat across days (and months too).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/911_service_type_month.png&quot; alt=&quot;Picture 4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In terms of total calls in a month, December has the highest calls, in particular Fridays are the busiest days! 
+&lt;img src=&quot;/images/911_service_type_busy.png&quot; alt=&quot;Picture 4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The project files are available in in &lt;a href=&quot;https://github.com/alamgirm/e911_calls&quot;&gt; github.&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 Jan 2018 10:39:40 -0500</pubDate>
+        <link>https://alamgirm.github.io/911-Call-Analysis</link>
+        <guid isPermaLink="true">https://alamgirm.github.io/911-Call-Analysis</guid>
+        
+        
+      </item>
     
       <item>
         <title>Parch and Posey</title>

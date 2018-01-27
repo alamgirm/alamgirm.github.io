@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Parch and Posey</title>
+    <title>911 Call Analysis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="This is a showcase of works done by Alamgir Mohammed.
 ">
-    <link rel="canonical" href="https://alamgirm.github.io/Parch-And_Posey">
+    <link rel="canonical" href="https://alamgirm.github.io/911-Call-Analysis">
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 
@@ -42,36 +42,47 @@
   <!--
   <div class="post-nav">
     
-      <a class="nav-item" href="/911-Call-Analysis.html">&laquo; Prev</a>
     
-    
-      <a class="nav-item" href="/Motivate-Bike-Sharing.html">Next &raquo;</a>
+      <a class="nav-item" href="/Parch-And_Posey.html">Next &raquo;</a>
     
   </div>
   -->
   <header class="post-header">
-    <h1 class="post-title">Parch and Posey</h1>
+    <h1 class="post-title">911 Call Analysis</h1>
   </header>
 
   <article class="post-content">
-    <p><img src="/images/parch_posey.png" alt="Picture 1" /></p>
+    <p><img src="/images/911.jpg" alt="Picture 1" /></p>
 
-<p>This is a very simple project, introductory to data science.</p>
-
-<p>Parch and Posey, a company that sells paper. They have fifty sales reps spread across the US in four regions. They sell three types of papers: regular, poster and glossy. Their clients are primarily large forture 100 companies who they attract by advertising on Google, Facebook and Twitter.</p>
-
-<p>Example of questins we’d like to answer: Which product line is worst performing? Which of their marketing channels they should make a big investment in.</p>
-
-<p>Parch and Posey database has five tables:</p>
+<p>This is a data analysis and visualization project based on Emergency 911-Calls dataset available at <a href="https://www.kaggle.com/mchirico/montcoalert"> kaggle.</a> The dataset has 289240 entries for real 911 calls made in 2015 in Montgomery County, PA, USA. Each call data has nine fields:</p>
 <ul>
-  <li>accounts: all client accounts</li>
-  <li>region: geographic regions of the market</li>
-  <li>sales_rep: inforamation related to sales representatives in different regions</li>
-  <li>web_events: advertising information</li>
-  <li>orders: all data related to order</li>
+  <li>lat : String variable, Latitude</li>
+  <li>lng: String variable, Longitude</li>
+  <li>desc: String variable, Description of the Emergency Call</li>
+  <li>zip: String variable, Zipcode</li>
+  <li>title: String variable, Title</li>
+  <li>timeStamp: String variable, YYYY-MM-DD HH:MM:SS</li>
+  <li>twp: String variable, Township</li>
+  <li>addr: String variable, Address</li>
+  <li>e: String variable, Dummy variable (always 1)</li>
 </ul>
 
-<p>The project files are available in in <a href="https://github.com/alamgirm/parch_posey"> github.</a></p>
+<h3 id="a-brief-analysis">A brief analysis</h3>
+<p>The top five twonships that made most calls are: LOWER MERION (24826), ABINGTON (17820), NORRISTOWN (16546),UPPER MERION (15288) and CHELTENHAM (13359).</p>
+
+<p>Among the three main services (EMS, Traffic and Fire), EMS seems get the most hit (49.9%), followed by Traffic 3(5.2%) and Fire (14.9%).
+<img src="/images/911_service_type.png" alt="Picture 2" /></p>
+
+<p><img src="/images/911_service_type_dow.png" alt="Picture 3" /></p>
+
+<p>When viewed in terms of days of week, and months of year this proportions seem to hold. More noticeable, the number of calls to Fire seems to be pretty flat across days (and months too).</p>
+
+<p><img src="/images/911_service_type_month.png" alt="Picture 4" /></p>
+
+<p>In terms of total calls in a month, December has the highest calls, in particular Fridays are the busiest days! 
+<img src="/images/911_service_type_busy.png" alt="Picture 4" /></p>
+
+<p>The project files are available in in <a href="https://github.com/alamgirm/e911_calls"> github.</a></p>
 
   </article>
 
